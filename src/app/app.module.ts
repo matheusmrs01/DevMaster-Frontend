@@ -6,8 +6,9 @@ import { AppComponent } from './app.component';
 import { HeaderComponent } from './header/header.component';
 import { BodyComponent } from './body/body.component';
 import { FooterComponent } from './footer/footer.component';
-import { LoginComponent } from './login/login.component';
-import { CriarJogadorComponent } from './criar-jogador/criar-jogador.component';
+import { LoginComponent } from './Deslogado/login/login.component';
+import { CriarJogadorComponent } from './Deslogado/criar-jogador/criar-jogador.component';
+import { HomeComponent } from './Deslogado/home/home.component';
 
 @NgModule({
   declarations: [
@@ -16,7 +17,8 @@ import { CriarJogadorComponent } from './criar-jogador/criar-jogador.component';
     BodyComponent,
     FooterComponent,
     LoginComponent,
-    CriarJogadorComponent
+    CriarJogadorComponent,
+    HomeComponent
   ],
   imports: [
     BrowserModule,
