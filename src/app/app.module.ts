@@ -11,10 +11,12 @@ import { FooterComponent } from './footer/footer.component';
 import { LoginComponent } from './Deslogado/login/login.component';
 import { CriarJogadorComponent } from './Deslogado/criar-jogador/criar-jogador.component';
 import { HomeComponent } from './Deslogado/home/home.component';
+import { DashboardComponent } from './Logado/dashboard/dashboard.component';
 
 const appRoutes: Routes = [
   { path: 'login', component: LoginComponent },
   { path: 'cadastro', component: CriarJogadorComponent },
+  { path: 'dashboard', component: DashboardComponent },
   // { path: 'projetos', component: ProjetosComponent },
   // { path: 'missoes/:id', component: MissoesComponent },
   { path: '', component: HomeComponent }
@@ -27,7 +29,8 @@ const appRoutes: Routes = [
     FooterComponent,
     LoginComponent,
     CriarJogadorComponent,
-    HomeComponent
+    HomeComponent,
+    DashboardComponent
   ],
   imports: [
     BrowserModule,
