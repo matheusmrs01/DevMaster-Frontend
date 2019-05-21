@@ -1,3 +1,52 @@
-<p>
-  criar-jogador works!
-</p>
+<div class="main-container">
+  <div class="clr-row">
+    <div class="clr-col-4">
+    </div>
+    <div class="clr-col-6">
+      <form clrForm>
+        <clr-input-container>
+          <label>Nome</label>
+          <input placeholder="Nome" clrInput name="nome" required />
+          <clr-control-error>Nome é obrigatório!</clr-control-error>
+        </clr-input-container>
+
+        <clr-input-container>
+          <label>Sobrenome</label>
+          <input placeholder="Sobrenome" clrInput name="sobrenome" required />
+          <clr-control-error>Sobrenome é obrigatório!</clr-control-error>
+        </clr-input-container>
+
+        <clr-input-container>
+          <label>Email</label>
+          <input placeholder="Email" clrInput name="email" required />
+          <clr-control-error>Email é obrigatório!</clr-control-error>
+        </clr-input-container>
+
+        <clr-input-container>
+          <label>User</label>
+          <input placeholder="User" clrInput name="user" required />
+          <clr-control-helper>Mesmo usuario do Gitlab.</clr-control-helper>
+          <clr-control-error>User é obrigatório!</clr-control-error>
+        </clr-input-container>
+
+        <clr-input-container>
+          <label>Senha</label>
+          <input placeholder="Senha" clrInput name="senha" required />
+          <clr-control-error>Senha é obrigatório!</clr-control-error>
+        </clr-input-container>
+
+        <clr-input-container>
+          <label>Private Token</label>
+          <input placeholder="Private Token" clrInput name="privatetoken" required />
+          <clr-control-helper>Private token obtido no gitlab</clr-control-helper>
+          <clr-control-error>Private token é obrigatório!</clr-control-error>
+        </clr-input-container>
+
+        <button class="btn btn-primary">Cadastrar!</button>
+
+      </form>
+    </div>
+    <div class="clr-col-4">
+    </div>
+  </div>
+</div>
