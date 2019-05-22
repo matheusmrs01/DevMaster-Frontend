@@ -17,6 +17,8 @@ import { MissoesSoloComponent } from './Logado/missoes-solo/missoes-solo.compone
 import { MissoesGrupoComponent } from './Logado/missoes-grupo/missoes-grupo.component';
 import { ProjetoComponent } from './Logado/projeto/projeto.component';
 import { DesafioComponent } from './Logado/desafio/desafio.component';
+import { EventoComponent } from './Logado/evento/evento.component';
+import { BurndownComponent } from './Logado/burndown/burndown.component';
 
 const appRoutes: Routes = [
   { path: 'login', component: LoginComponent },
@@ -27,6 +29,8 @@ const appRoutes: Routes = [
   { path: 'missoes-solo/:id', component: MissoesSoloComponent },
   { path: 'missoes-grupo/:id', component: MissoesGrupoComponent },
   { path: 'desafio', component: DesafioComponent },
+  { path: 'evento', component: EventoComponent },
+  { path: 'burndown', component: BurndownComponent },
   { path: '', component: HomeComponent }
 ];
 
@@ -44,7 +48,8 @@ const appRoutes: Routes = [
     MissoesGrupoComponent,
     ProjetoComponent,
     DesafioComponent,
-    EventoComponent
+    EventoComponent,
+    BurndownComponent
   ],
   imports: [
     BrowserModule,
