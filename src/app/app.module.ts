@@ -21,8 +21,10 @@ const appRoutes: Routes = [
   { path: 'login', component: LoginComponent },
   { path: 'cadastro', component: CriarJogadorComponent },
   { path: 'dashboard', component: DashboardComponent },
-  // { path: 'projetos', component: ProjetosComponent },
-  // { path: 'missoes/:id', component: MissoesComponent },
+  { path: 'projetos', component: ProjetoComponent },
+  { path: 'missoes', component: MissoesComponent },
+  { path: 'missoes-solo/:id', component: MissoesSoloComponent },
+  { path: 'missoes-grupo', component: MissoesGrupoComponent },
   { path: '', component: HomeComponent }
 ];
 
