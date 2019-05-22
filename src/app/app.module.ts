@@ -26,6 +26,7 @@ const appRoutes: Routes = [
   { path: 'missoes', component: MissoesComponent },
   { path: 'missoes-solo/:id', component: MissoesSoloComponent },
   { path: 'missoes-grupo/:id', component: MissoesGrupoComponent },
+  { path: 'desafio', component: DesafioComponent },
   { path: '', component: HomeComponent }
 ];
 
@@ -42,7 +43,8 @@ const appRoutes: Routes = [
     MissoesSoloComponent,
     MissoesGrupoComponent,
     ProjetoComponent,
-    DesafioComponent
+    DesafioComponent,
+    EventoComponent
   ],
   imports: [
     BrowserModule,

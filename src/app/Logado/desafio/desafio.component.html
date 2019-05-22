@@ -1,3 +1,667 @@
-<p>
-  desafio works!
-</p>
+<div class="main-container">
+
+  <clr-modal [(clrModalOpen)]="basic" [clrModalSize]="'lg'" [clrModalStaticBackdrop]="false">
+    <h3 class="modal-title">Crie seu desafio</h3>
+    <div class="modal-body">
+      <form class="clr-form">
+        <div class="clr-form-control">
+          <label for="example" class="clr-control-label">Nome do Desafio:</label>
+          <div class="clr-control-container clr-error">
+            <div class="clr-input-wrapper">
+              <input type="text" id="example" class="clr-input">
+              <clr-icon class="clr-validate-icon" shape="exclamation-circle"></clr-icon>
+            </div>
+            <span class="clr-subtext">Nome já em uso</span>
+          </div>
+
+          <label for="select-full" class="clr-control-label">Desafiado:</label>
+          <div class="clr-control-container">
+            <div class="clr-select-wrapper">
+              <select id="select-full" class="clr-select">
+                <option value="1">Desafiado 1</option>
+                <option value="2">Desafiado 2</option>
+                <option value="3">Desafiado 3</option>
+              </select>
+              <clr-icon class="clr-validate-icon" shape="exclamation-circle"></clr-icon>
+            </div>
+            <span class="clr-subtext">Desafiado não existe.</span>
+          </div>
+
+          <label for="select-full" class="clr-control-label">Item:</label>
+          <div class="clr-control-container">
+            <div class="clr-select-wrapper">
+              <select id="select-full" class="clr-select">
+                <option value="1">Nada</option>
+                <option value="2">Item 1</option>
+                <option value="3">Item 2</option>
+              </select>
+              <clr-icon class="clr-validate-icon" shape="exclamation-circle"></clr-icon>
+            </div>
+            <span class="clr-subtext">Item não existe ou você não tem a quantidade necessaria</span>
+          </div>
+
+        </div>
+      </form>
+
+    </div>
+    <div class="modal-footer">
+      <button type="button" class="btn btn-outline" (click)="basic = false">Cancel</button>
+      <button type="button" class="btn btn-primary" (click)="basic = false">Ok</button>
+    </div>
+  </clr-modal>
+
+  <div class="clr-row clr-justify-content-center">
+    <div class="clr-col-7 clr-align-self-center">
+      <div class="clr-row">
+        <div class="clr-col">
+          <h3>Desafios</h3>
+        </div>
+
+
+        <div class="clr-col-1.5">
+          <button type="button" class="btn btn-primary" (click)="basic = true">Desafiar!</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="clr-row clr-justify-content-center">
+    <div class="clr-col-7 clr-align-self-center">
+
+      <clr-tabs>
+
+        <clr-tab>
+          <button clrTabLink id="link1">Propostas</button>
+          <clr-tab-content id="content1" *clrIfActive>
+
+            <clr-tabs>
+              <clr-tab>
+                <button clrTabLink id="link1">Desafiado</button>
+                <clr-tab-content id="content1" *clrIfActive="true">
+                  <table class="table">
+                    <thead>
+                      <tr>
+                        <th>Desafio</th>
+                        <th>Desafiante</th>
+                        <th>Item</th>
+                        <th>Ações</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr>
+                        <td>Desafio 1 Proposta</td>
+                        <td>Desafiante 1 Proposta</td>
+                        <td>Item 1 Desafiante</td>
+                        <td>
+                          <button class="btn btn-success">Aceitar</button>
+                          <button class="btn btn-danger">Recusar</button>
+                        </td>
+                      </tr>
+                      <tr>
+                        <td>Desafio 2 Proposta</td>
+                        <td>Desafiante 2 Proposta</td>
+                        <td>Item 2 Desafiante</td>
+                        <td>
+                          <button class="btn btn-success">Aceitar</button>
+                          <button class="btn btn-danger">Recusar</button>
+                        </td>
+                      </tr>
+                      <tr>
+                        <td>Desafio 3 Proposta</td>
+                        <td>Desafiante 3 Proposta</td>
+                        <td>Item 3 Desafiante</td>
+                        <td>
+                          <button class="btn btn-success">Aceitar</button>
+                          <button class="btn btn-danger">Recusar</button>
+                        </td>
+                      </tr>
+                      <tr>
+                        <td>Desafio 4 Proposta</td>
+                        <td>Desafiante 4 Proposta</td>
+                        <td>Item 4 Desafiante</td>
+                        <td>
+                          <button class="btn btn-success">Aceitar</button>
+                          <button class="btn btn-danger">Recusar</button>
+                        </td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </clr-tab-content>
+              </clr-tab>
+              <clr-tab>
+                <button clrTabLink>Desafiante</button>
+                <clr-tab-content *clrIfActive>
+                  <table class="table">
+                    <thead>
+                      <tr>
+                        <th>Desafio</th>
+                        <th>Desafiado</th>
+                        <th>Item</th>
+                        <th>Ações</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr>
+                        <td>Desafio 1 Proposta</td>
+                        <td>Desafiado 1 Proposta</td>
+                        <td>Item 1 Desafiado</td>
+                        <td>
+                          <button class="btn btn-success">Editar</button>
+                          <button class="btn btn-danger">Excluir</button>
+                        </td>
+                      </tr>
+                      <tr>
+                        <td>Desafio 2 Proposta</td>
+                        <td>Desafiado 2 Proposta</td>
+                        <td>Item 2 Desafiado</td>
+                        <td>
+                          <button class="btn btn-success">Editar</button>
+                          <button class="btn btn-danger">Excluir</button>
+                        </td>
+                      </tr>
+                      <tr>
+                        <td>Desafio 3 Proposta</td>
+                        <td>Desafiado 3 Proposta</td>
+                        <td>Item 3 Desafiado</td>
+                        <td>
+                          <button class="btn btn-success">Editar</button>
+                          <button class="btn btn-danger">Excluir</button>
+                        </td>
+                      </tr>
+                      <tr>
+                        <td>Desafio 4 Proposta</td>
+                        <td>Desafiado 4 Proposta</td>
+                        <td>Item 4 Desafiado</td>
+                        <td>
+                          <button class="btn btn-success">Editar</button>
+                          <button class="btn btn-danger">Excluir</button>
+                        </td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </clr-tab-content>
+              </clr-tab>
+            </clr-tabs>
+
+          </clr-tab-content>
+        </clr-tab>
+
+
+        <clr-tab>
+          <button clrTabLink>Aposta</button>
+          <clr-tab-content *clrIfActive="true">
+
+            <clr-tabs>
+              <clr-tab>
+                <button clrTabLink id="link1">Desafiado</button>
+                <clr-tab-content id="content1" *clrIfActive>
+                  <table class="table">
+                    <thead>
+                      <tr>
+                        <th>Desafio</th>
+                        <th>Desafiante</th>
+                        <th>Item</th>
+                        <th>Missões</th>
+                        <th>Ações</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr>
+                        <td>Desafio 1 Aposta</td>
+                        <td>Desafiante 1 Aposta</td>
+                        <td>Item 1 Desafiante</td>
+                        <td>
+                          <button class="btn btn-info">Missões</button>
+                        </td>
+                        <td>
+                          <button class="btn btn-success">Add Missão</button>
+                          <button class="btn btn-primary">Next!</button>
+                        </td>
+                      </tr>
+                      <tr>
+                        <td>Desafio 2 Aposta</td>
+                        <td>Desafiante 2 Aposta</td>
+                        <td>Item 2 Desafiante</td>
+                        <td>
+                          <button class="btn btn-info">Missões</button>
+                        </td>
+                        <td>
+                          <button class="btn btn-success">Add Missão</button>
+                          <button class="btn btn-primary">Next!</button>
+                        </td>
+                      </tr>
+                      <tr>
+                        <td>Desafio 3 Aposta</td>
+                        <td>Desafiante 3 Aposta</td>
+                        <td>Item 3 Desafiante</td>
+                        <td>
+                          <button class="btn btn-info">Missões</button>
+                        </td>
+                        <td>
+                          <button class="btn btn-success">Add Missão</button>
+                          <button class="btn btn-primary">Next!</button>
+                        </td>
+                      </tr>
+                      <tr>
+                        <td>Desafio 4 Aposta</td>
+                        <td>Desafiante 4 Aposta</td>
+                        <td>Item 4 Desafiante</td>
+                        <td>
+                          <button class="btn btn-info">Missões</button>
+                        </td>
+                        <td>
+                          <button class="btn btn-success">Add Missão</button>
+                          <button class="btn btn-primary">Next!</button>
+                        </td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </clr-tab-content>
+              </clr-tab>
+              <clr-tab>
+                <button clrTabLink>Desafiante</button>
+                <clr-tab-content *clrIfActive="true">
+                  <table class="table">
+                    <thead>
+                      <tr>
+                        <th>Desafio</th>
+                        <th>Desafiado</th>
+                        <th>Item</th>
+                        <th>Missões</th>
+                        <th>Ações</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr>
+                        <td>Desafio 1 Aposta</td>
+                        <td>Desafiado 1 Aposta</td>
+                        <td>Item 1 Desafiado</td>
+                        <td>
+                          <button class="btn btn-info">Missões</button>
+                        </td>
+                        <td>
+                          <button class="btn btn-success">Add Missão</button>
+                          <button class="btn btn-primary">Next!</button>
+                        </td>
+                      </tr>
+                      <tr>
+                        <td>Desafio 2 Aposta</td>
+                        <td>Desafiado 2 Aposta</td>
+                        <td>Item 2 Desafiado</td>
+                        <td>
+                          <button class="btn btn-info">Missões</button>
+                        </td>
+                        <td>
+                          <button class="btn btn-success">Add Missão</button>
+                          <button class="btn btn-primary">Next!</button>
+                        </td>
+                      </tr>
+                      <tr>
+                        <td>Desafio 3 Aposta</td>
+                        <td>Desafiado 3 Aposta</td>
+                        <td>Item 3 Desafiado</td>
+                        <td>
+                          <button class="btn btn-info">Missões</button>
+                        </td>
+                        <td>
+                          <button class="btn btn-success">Add Missão</button>
+                          <button class="btn btn-primary">Next!</button>
+                        </td>
+                      </tr>
+                      <tr>
+                        <td>Desafio 4 Aposta</td>
+                        <td>Desafiado 4 Aposta</td>
+                        <td>Item 4 Desafiado</td>
+                        <td>
+                          <button class="btn btn-info">Missões</button>
+                        </td>
+                        <td>
+                          <button class="btn btn-success">Add Missão</button>
+                          <button class="btn btn-primary">Next!</button>
+                        </td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </clr-tab-content>
+              </clr-tab>
+            </clr-tabs>
+
+          </clr-tab-content>
+        </clr-tab>
+
+
+        <clr-tab>
+          <button clrTabLink>Em Andamento</button>
+          <clr-tab-content *clrIfActive="true">
+
+            <clr-tabs>
+              <clr-tab>
+                <button clrTabLink id="link1">Desafiado</button>
+                <clr-tab-content id="content1" *clrIfActive="true">
+                  <table class="table">
+                    <thead>
+                      <tr>
+                        <th>Desafio</th>
+                        <th>Desafiante</th>
+                        <th>Item</th>
+                        <th>Missões</th>
+                        <th>Ações</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr>
+                        <td>Desafio 1 Andamento</td>
+                        <td>Desafiante 1 Andamento</td>
+                        <td>Item 1 Desafiante</td>
+                        <td>
+                          <button class="btn btn-info">Missões</button>
+                        </td>
+                        <td>
+                          <button class="btn btn-danger">Concluir!</button>
+                        </td>
+                      </tr>
+                      <tr>
+                        <td>Desafio 2 Andamento</td>
+                        <td>Desafiante 2 Andamento</td>
+                        <td>Item 2 Desafiante</td>
+                        <td>
+                          <button class="btn btn-info">Missões</button>
+                        </td>
+                        <td>
+                          <button class="btn btn-danger">Concluir!</button>
+                        </td>
+                      </tr>
+                      <tr>
+                        <td>Desafio 3 Andamento</td>
+                        <td>Desafiante 3 Andamento</td>
+                        <td>Item 3 Desafiante</td>
+                        <td>
+                          <button class="btn btn-info">Missões</button>
+                        </td>
+                        <td>
+                          <button class="btn btn-danger">Concluir!</button>
+                        </td>
+                      </tr>
+                      <tr>
+                        <td>Desafio 4 Andamento</td>
+                        <td>Desafiante 4 Andamento</td>
+                        <td>Item 4 Desafiante</td>
+                        <td>
+                          <button class="btn btn-info">Missões</button>
+                        </td>
+                        <td>
+                          <button class="btn btn-danger">Concluir!</button>
+                        </td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </clr-tab-content>
+              </clr-tab>
+              <clr-tab>
+                <button clrTabLink>Desafiante</button>
+                <clr-tab-content *clrIfActive>
+                  <table class="table">
+                    <thead>
+                      <tr>
+                        <th>Desafio</th>
+                        <th>Desafiado</th>
+                        <th>Item</th>
+                        <th>Missões</th>
+                        <th>Ações</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr>
+                        <td>Desafio 1 Andamento</td>
+                        <td>Desafiado 1 Andamento</td>
+                        <td>Item 1 Desafiado</td>
+                        <td>
+                          <button class="btn btn-info">Missões</button>
+                        </td>
+                        <td>
+                          <button class="btn btn-danger">Concluir!</button>
+                        </td>
+                      </tr>
+                      <tr>
+                        <td>Desafio 2 Andamento</td>
+                        <td>Desafiado 2 Andamento</td>
+                        <td>Item 2 Desafiado</td>
+                        <td>
+                          <button class="btn btn-info">Missões</button>
+                        </td>
+                        <td>
+                          <button class="btn btn-danger">Concluir!</button>
+                        </td>
+                      </tr>
+                      <tr>
+                        <td>Desafio 3 Andamento</td>
+                        <td>Desafiado 3 Andamento</td>
+                        <td>Item 3 Desafiado</td>
+                        <td>
+                          <button class="btn btn-info">Missões</button>
+                        </td>
+                        <td>
+                          <button class="btn btn-danger">Concluir!</button>
+                        </td>
+                      </tr>
+                      <tr>
+                        <td>Desafio 4 Andamento</td>
+                        <td>Desafiado 4 Andamento</td>
+                        <td>Item 4 Desafiado</td>
+                        <td>
+                          <button class="btn btn-info">Missões</button>
+                        </td>
+                        <td>
+                          <button class="btn btn-danger">Concluir!</button>
+                        </td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </clr-tab-content>
+              </clr-tab>
+            </clr-tabs>
+
+          </clr-tab-content>
+        </clr-tab>
+
+
+        <clr-tab>
+          <button clrTabLink>Concluidos</button>
+          <clr-tab-content *clrIfActive="true">
+
+            <clr-tabs>
+              <clr-tab>
+                <button clrTabLink id="link1">Desafiado</button>
+                <clr-tab-content id="content1" *clrIfActive>
+                  <table class="table">
+                    <thead>
+                      <tr>
+                        <th>Desafio</th>
+                        <th>Desafiante</th>
+                        <th>Item</th>
+                        <th>Missões</th>
+                        <th>Status</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr>
+                        <td>Desafio 1 Concluido</td>
+                        <td>Desafiante 1 Concluido</td>
+                        <td>Item 1 Desafiante</td>
+                        <td>
+                          <button class="btn btn-info">Missões</button>
+                        </td>
+                        <td>
+                          Ganhou!!
+                        </td>
+                      </tr>
+
+                      <tr>
+                        <td>Desafio 2 Concluido</td>
+                        <td>Desafiante 2 Concluido</td>
+                        <td>Item 2 Desafiante</td>
+                        <td>
+                          <button class="btn btn-info">Missões</button>
+                        </td>
+                        <td>
+                          Perdeu!!
+                        </td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </clr-tab-content>
+              </clr-tab>
+
+              <clr-tab>
+                <button clrTabLink>Desafiante</button>
+                <clr-tab-content *clrIfActive>
+                  <table class="table">
+                    <thead>
+                      <tr>
+                        <th>Desafio</th>
+                        <th>Desafiado</th>
+                        <th>Item</th>
+                        <th>Missões</th>
+                        <th>Status</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr>
+                        <td>Desafio 3 Concluido</td>
+                        <td>Desafiado 3 Concluido</td>
+                        <td>Item 3 Desafiado</td>
+                        <td>
+                          <button class="btn btn-info">Missões</button>
+                        </td>
+                        <td>
+                          Perdeu!!
+                        </td>
+                      </tr>
+
+                      <tr>
+                        <td>Desafio 4 Concluido</td>
+                        <td>Desafiado 4 Concluido</td>
+                        <td>Item 4 Desafiado</td>
+                        <td>
+                          <button class="btn btn-info">Missões</button>
+                        </td>
+                        <td>
+                          Ganhou!!
+                        </td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </clr-tab-content>
+              </clr-tab>
+
+              <clr-tab>
+                <button clrTabLink>
+                  <clr-icon shape="check"></clr-icon>
+                </button>
+                <clr-tab-content *clrIfActive="true">
+                  <table class="table">
+                    <thead>
+                      <tr>
+                        <th>Desafio</th>
+                        <th>Desafiado/Desafiante</th>
+                        <th>Item</th>
+                        <th>Missões</th>
+                        <th>Como</th>
+                        <th>Status</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr>
+                        <td>Desafio 1 Concluido</td>
+                        <td>Desafiado 1 Concluido</td>
+                        <td>Item 1 Desafiado</td>
+                        <td>
+                          <button class="btn btn-info">Missões</button>
+                        </td>
+                        <td>
+                          Desafiante
+                        </td>
+                        <td>
+                          Ganhou!!
+                        </td>
+                      </tr>
+
+                      <tr>
+                        <td>Desafio 4 Concluido</td>
+                        <td>Desafiante 4 Concluido</td>
+                        <td>Item 4 Desafiante</td>
+                        <td>
+                          <button class="btn btn-info">Missões</button>
+                        </td>
+                        <td>
+                          Desafiado
+                        </td>
+                        <td>
+                          Ganhou!!
+                        </td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </clr-tab-content>
+              </clr-tab>
+
+              <clr-tab>
+                <button clrTabLink>
+                  <clr-icon shape="times"></clr-icon>
+                </button>
+                <clr-tab-content>
+                  <table class="table">
+                    <thead>
+                      <tr>
+                        <th>Desafio</th>
+                        <th>Desafiado/Desafiante</th>
+                        <th>Item</th>
+                        <th>Missões</th>
+                        <th>Como</th>
+                        <th>Status</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr>
+                        <td>Desafio 2 Concluido</td>
+                        <td>Desafiado 2 Concluido</td>
+                        <td>Item 2 Desafiado</td>
+                        <td>
+                          <button class="btn btn-info">Missões</button>
+                        </td>
+                        <td>
+                          Desafiado
+                        </td>
+                        <td>
+                          Perdeu!!
+                        </td>
+                      </tr>
+
+                      <tr>
+                        <td>Desafio 3 Concluido</td>
+                        <td>Desafiante 3 Concluido</td>
+                        <td>Item 3 Desafiante</td>
+                        <td>
+                          <button class="btn btn-info">Missões</button>
+                        </td>
+                        <td>
+                          Desafiante
+                        </td>
+                        <td>
+                          Perdeu!!
+                        </td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </clr-tab-content>
+              </clr-tab>
+            </clr-tabs>
+
+          </clr-tab-content>
+        </clr-tab>
+
+      </clr-tabs>
+
+    </div>
+  </div>
+</div>
