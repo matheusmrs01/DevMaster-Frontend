@@ -50,6 +50,55 @@
     </div>
   </clr-modal>
 
+  <clr-modal [(clrModalOpen)]="missoes" [clrModalSize]="'lg'" [clrModalStaticBackdrop]="false">
+    <h3 class="modal-title">Missões</h3>
+    <div class="modal-body">
+      <div class="clr-row clr-justify-content-center">
+
+        <div class="clr-col-12 clr-align-self-center">
+
+          <div class="clr-row clr-justify-content-center">
+            <div class="clr-col-sm-12 clr-col-md-6">
+              <div class="card">
+                <div class="card-header">
+                  Missões do Desafiante
+                </div>
+                <div class="card-block">
+                  <div class="card-text">
+                    Missão 1 <br/>
+                    Missão 2 <br/>
+                    Missão 3 
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="clr-col-sm-12 clr-col-md-6">
+              <div class="card">
+                <div class="card-header">
+                  Missões do Desafiado
+                </div>
+                <div class="card-block">
+                  <div class="card-text">
+                      Missão 1 <br/>
+                      Missão 2 <br/>
+                      Missão 3 
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <div class="modal-footer">
+      <button type="button" class="btn btn-primary" (click)="missoes = false">Ok</button>
+    </div>
+  </clr-modal>
+
+
   <div class="clr-row clr-justify-content-center">
     <div class="clr-col-7 clr-align-self-center">
       <div class="clr-row">
@@ -211,7 +260,7 @@
                         <td>Desafiante 1 Aposta</td>
                         <td>Item 1 Desafiante</td>
                         <td>
-                          <button class="btn btn-info">Missões</button>
+                          <button class="btn btn-info" (click)="missoes = true">Missões</button>
                         </td>
                         <td>
                           <button class="btn btn-success">Add Missão</button>
@@ -223,7 +272,7 @@
                         <td>Desafiante 2 Aposta</td>
                         <td>Item 2 Desafiante</td>
                         <td>
-                          <button class="btn btn-info">Missões</button>
+                          <button class="btn btn-info" (click)="missoes = true">Missões</button>
                         </td>
                         <td>
                           <button class="btn btn-success">Add Missão</button>
@@ -235,7 +284,7 @@
                         <td>Desafiante 3 Aposta</td>
                         <td>Item 3 Desafiante</td>
                         <td>
-                          <button class="btn btn-info">Missões</button>
+                          <button class="btn btn-info" (click)="missoes = true">Missões</button>
                         </td>
                         <td>
                           <button class="btn btn-success">Add Missão</button>
@@ -247,7 +296,7 @@
                         <td>Desafiante 4 Aposta</td>
                         <td>Item 4 Desafiante</td>
                         <td>
-                          <button class="btn btn-info">Missões</button>
+                          <button class="btn btn-info" (click)="missoes = true">Missões</button>
                         </td>
                         <td>
                           <button class="btn btn-success">Add Missão</button>
@@ -277,7 +326,7 @@
                         <td>Desafiado 1 Aposta</td>
                         <td>Item 1 Desafiado</td>
                         <td>
-                          <button class="btn btn-info">Missões</button>
+                          <button class="btn btn-info" (click)="missoes = true">Missões</button>
                         </td>
                         <td>
                           <button class="btn btn-success">Add Missão</button>
@@ -289,7 +338,7 @@
                         <td>Desafiado 2 Aposta</td>
                         <td>Item 2 Desafiado</td>
                         <td>
-                          <button class="btn btn-info">Missões</button>
+                          <button class="btn btn-info" (click)="missoes = true">Missões</button>
                         </td>
                         <td>
                           <button class="btn btn-success">Add Missão</button>
@@ -301,7 +350,7 @@
                         <td>Desafiado 3 Aposta</td>
                         <td>Item 3 Desafiado</td>
                         <td>
-                          <button class="btn btn-info">Missões</button>
+                          <button class="btn btn-info" (click)="missoes = true">Missões</button>
                         </td>
                         <td>
                           <button class="btn btn-success">Add Missão</button>
@@ -313,7 +362,7 @@
                         <td>Desafiado 4 Aposta</td>
                         <td>Item 4 Desafiado</td>
                         <td>
-                          <button class="btn btn-info">Missões</button>
+                          <button class="btn btn-info" (click)="missoes = true">Missões</button>
                         </td>
                         <td>
                           <button class="btn btn-success">Add Missão</button>
@@ -354,7 +403,7 @@
                         <td>Desafiante 1 Andamento</td>
                         <td>Item 1 Desafiante</td>
                         <td>
-                          <button class="btn btn-info">Missões</button>
+                          <button class="btn btn-info" (click)="missoes = true">Missões</button>
                         </td>
                         <td>
                           <button class="btn btn-danger">Concluir!</button>
@@ -365,7 +414,7 @@
                         <td>Desafiante 2 Andamento</td>
                         <td>Item 2 Desafiante</td>
                         <td>
-                          <button class="btn btn-info">Missões</button>
+                          <button class="btn btn-info" (click)="missoes = true">Missões</button>
                         </td>
                         <td>
                           <button class="btn btn-danger">Concluir!</button>
@@ -376,7 +425,7 @@
                         <td>Desafiante 3 Andamento</td>
                         <td>Item 3 Desafiante</td>
                         <td>
-                          <button class="btn btn-info">Missões</button>
+                          <button class="btn btn-info" (click)="missoes = true">Missões</button>
                         </td>
                         <td>
                           <button class="btn btn-danger">Concluir!</button>
@@ -387,7 +436,7 @@
                         <td>Desafiante 4 Andamento</td>
                         <td>Item 4 Desafiante</td>
                         <td>
-                          <button class="btn btn-info">Missões</button>
+                          <button class="btn btn-info" (click)="missoes = true">Missões</button>
                         </td>
                         <td>
                           <button class="btn btn-danger">Concluir!</button>
@@ -416,7 +465,7 @@
                         <td>Desafiado 1 Andamento</td>
                         <td>Item 1 Desafiado</td>
                         <td>
-                          <button class="btn btn-info">Missões</button>
+                          <button class="btn btn-info" (click)="missoes = true">Missões</button>
                         </td>
                         <td>
                           <button class="btn btn-danger">Concluir!</button>
@@ -427,7 +476,7 @@
                         <td>Desafiado 2 Andamento</td>
                         <td>Item 2 Desafiado</td>
                         <td>
-                          <button class="btn btn-info">Missões</button>
+                          <button class="btn btn-info" (click)="missoes = true">Missões</button>
                         </td>
                         <td>
                           <button class="btn btn-danger">Concluir!</button>
@@ -438,7 +487,7 @@
                         <td>Desafiado 3 Andamento</td>
                         <td>Item 3 Desafiado</td>
                         <td>
-                          <button class="btn btn-info">Missões</button>
+                          <button class="btn btn-info" (click)="missoes = true">Missões</button>
                         </td>
                         <td>
                           <button class="btn btn-danger">Concluir!</button>
@@ -449,7 +498,7 @@
                         <td>Desafiado 4 Andamento</td>
                         <td>Item 4 Desafiado</td>
                         <td>
-                          <button class="btn btn-info">Missões</button>
+                          <button class="btn btn-info" (click)="missoes = true">Missões</button>
                         </td>
                         <td>
                           <button class="btn btn-danger">Concluir!</button>
@@ -489,7 +538,7 @@
                         <td>Desafiante 1 Concluido</td>
                         <td>Item 1 Desafiante</td>
                         <td>
-                          <button class="btn btn-info">Missões</button>
+                          <button class="btn btn-info" (click)="missoes = true">Missões</button>
                         </td>
                         <td>
                           Ganhou!!
@@ -501,7 +550,7 @@
                         <td>Desafiante 2 Concluido</td>
                         <td>Item 2 Desafiante</td>
                         <td>
-                          <button class="btn btn-info">Missões</button>
+                          <button class="btn btn-info" (click)="missoes = true">Missões</button>
                         </td>
                         <td>
                           Perdeu!!
@@ -531,7 +580,7 @@
                         <td>Desafiado 3 Concluido</td>
                         <td>Item 3 Desafiado</td>
                         <td>
-                          <button class="btn btn-info">Missões</button>
+                          <button class="btn btn-info" (click)="missoes = true">Missões</button>
                         </td>
                         <td>
                           Perdeu!!
@@ -543,7 +592,7 @@
                         <td>Desafiado 4 Concluido</td>
                         <td>Item 4 Desafiado</td>
                         <td>
-                          <button class="btn btn-info">Missões</button>
+                          <button class="btn btn-info" (click)="missoes = true">Missões</button>
                         </td>
                         <td>
                           Ganhou!!
@@ -576,7 +625,7 @@
                         <td>Desafiado 1 Concluido</td>
                         <td>Item 1 Desafiado</td>
                         <td>
-                          <button class="btn btn-info">Missões</button>
+                          <button class="btn btn-info" (click)="missoes = true">Missões</button>
                         </td>
                         <td>
                           Desafiante
@@ -591,7 +640,7 @@
                         <td>Desafiante 4 Concluido</td>
                         <td>Item 4 Desafiante</td>
                         <td>
-                          <button class="btn btn-info">Missões</button>
+                          <button class="btn btn-info" (click)="missoes = true">Missões</button>
                         </td>
                         <td>
                           Desafiado
@@ -627,7 +676,7 @@
                         <td>Desafiado 2 Concluido</td>
                         <td>Item 2 Desafiado</td>
                         <td>
-                          <button class="btn btn-info">Missões</button>
+                          <button class="btn btn-info" (click)="missoes = true">Missões</button>
                         </td>
                         <td>
                           Desafiado
@@ -642,7 +691,7 @@
                         <td>Desafiante 3 Concluido</td>
                         <td>Item 3 Desafiante</td>
                         <td>
-                          <button class="btn btn-info">Missões</button>
+                          <button class="btn btn-info" (click)="missoes = true">Missões</button>
                         </td>
                         <td>
                           Desafiante
