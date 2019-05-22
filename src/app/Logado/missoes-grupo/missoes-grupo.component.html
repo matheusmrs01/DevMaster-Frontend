@@ -1,3 +1,112 @@
-<p>
-  missoes-grupo works!
-</p>
+<div class="main-container">
+  <div class="clr-row clr-justify-content-center">
+    <div class="clr-col-6 clr-align-self-center">
+      <h4>
+        Missões do Projeto: x do grupo: id_milestone
+        <a role="tooltip" aria-haspopup="true" class="tooltip tooltip-md tooltip-bottom-right">
+          <clr-icon shape="info-circle" size="24"></clr-icon>
+          <span class="tooltip-content">Sobre as labels</span>
+        </a>
+      </h4>
+      <clr-tabs>
+
+        <clr-tab>
+          <button clrTabLink id="link1">Concluidas</button>
+          <clr-tab-content id="content1" *clrIfActive="true">
+            <div class="card">
+              <div class="card-block">
+                <div class="card-title">
+                  Missão:
+                </div>
+                <div class="card-text">
+                  XP adquirida com a missão:
+                </div>
+              </div>
+              <div class="card-footer">
+                <span class="label label-info">Terminada na data certa!</span>
+                <span class="label label-success">Terminada em tempo record!</span>
+                <span class="label label-warning">Não terminada na data certa!</span>
+                <span class="label label-danger">Não terminada no tempo certo!</span>
+              </div>
+            </div>
+
+          </clr-tab-content>
+        </clr-tab>
+
+        <clr-tab>
+          <button clrTabLink>Em Andamento</button>
+          <clr-tab-content *clrIfActive>
+            <div class="card">
+              <div class="card-block">
+                <div class="card-title">
+                  Missão:
+                </div>
+                <div class="card-text">
+                  XP que pode ser adquirida com a missão:
+                </div>
+              </div>
+              <div class="card-footer">
+                <span class="label label-warning">Não terminada na data certa: -20 xp!</span>
+                <span class="label label-danger">Não terminada no tempo certo: -50xp!</span>
+              </div>
+            </div>
+          </clr-tab-content>
+        </clr-tab>
+
+        <clr-tab>
+          <button clrTabLink>Missões dos Companheiros do grupo</button>
+          <clr-tab-content *clrIfActive>
+            <clr-tabs>
+
+              <clr-tab>
+                <button clrTabLink id="link1"><clr-icon shape="check"></clr-icon></button>
+                <clr-tab-content id="content1" *clrIfActive="true">
+                  <div class="card">
+                    <div class="card-block">
+                      <div class="card-title">
+                        Missão:
+                      </div>
+                      <div class="card-text">
+                        XP da missão: <br/>
+                        Responsavel:
+                      </div>
+                    </div>
+                    <div class="card-footer">
+                      <span class="label label-info">Terminada na data certa!</span>
+                      <span class="label label-success">Terminada em tempo record!</span>
+                      <span class="label label-warning">Não terminada na data certa!</span>
+                      <span class="label label-danger">Não terminada no tempo certo!</span>
+                    </div>
+                  </div>
+
+                </clr-tab-content>
+              </clr-tab>
+
+              <clr-tab>
+                <button clrTabLink><clr-icon shape="times"></clr-icon></button>
+                <clr-tab-content *clrIfActive>
+                  <div class="card">
+                    <div class="card-block">
+                      <div class="card-title">
+                        Missão:
+                      </div>
+                      <div class="card-text">
+                        XP que pode ser adquirida com a missão: <br/>
+                        Responsavel: 
+                      </div>
+                    </div>
+                    <div class="card-footer">
+                      <span class="label label-warning">Não terminada na data certa: -20 xp!</span>
+                      <span class="label label-danger">Não terminada no tempo certo: -50xp!</span>
+                    </div>
+                  </div>
+                </clr-tab-content>
+              </clr-tab>
+            </clr-tabs>
+          </clr-tab-content>
+        </clr-tab>
+
+      </clr-tabs>
+    </div>
+  </div>
+</div>
