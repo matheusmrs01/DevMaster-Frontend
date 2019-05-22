@@ -12,6 +12,7 @@ import { LoginComponent } from './Deslogado/login/login.component';
 import { CriarJogadorComponent } from './Deslogado/criar-jogador/criar-jogador.component';
 import { HomeComponent } from './Deslogado/home/home.component';
 import { DashboardComponent } from './Logado/dashboard/dashboard.component';
+import { MissoesComponent } from './Logado/missoes/missoes.component';
 
 const appRoutes: Routes = [
   { path: 'login', component: LoginComponent },
@@ -30,7 +31,8 @@ const appRoutes: Routes = [
     LoginComponent,
     CriarJogadorComponent,
     HomeComponent,
-    DashboardComponent
+    DashboardComponent,
+    MissoesComponent
   ],
   imports: [
     BrowserModule,
