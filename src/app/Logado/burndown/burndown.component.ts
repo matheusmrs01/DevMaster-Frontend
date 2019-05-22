@@ -6,10 +6,32 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./burndown.component.css']
 })
 export class BurndownComponent implements OnInit {
+  type = 'LineChart';
+   data = [
+      ["Dia 0", 30],
+      ["Dia 1",  30],
+      ["Dia 2",  20],
+      ["Dia 3",  15],
+      ["Dia 4",  10],
+      ["Dia 5",  0]      
+   ];
+   options = {   
+      hAxis: {
+         title: 'Dias'
+      },
+      vAxis:{
+         title: 'Sprint Packlog'
+      },
+      backgroundColor:'#e5e5e5',
+      pointSize:3
+   };
+  width = 1000;
+  height = 700;
 
   constructor() { }
 
   ngOnInit() {
+
   }
 
 }
