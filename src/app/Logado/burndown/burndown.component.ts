@@ -11,9 +11,9 @@ export class BurndownComponent implements OnInit {
       ["Dia 0", 30],
       ["Dia 1",  30],
       ["Dia 2",  20],
-      ["Dia 3",  15],
-      ["Dia 4",  10],
-      ["Dia 5",  0]      
+      ["Dia 3",  null],
+      ["Dia 4",  null],
+      ["Dia 5",  null]      
    ];
    options = {   
       hAxis: {
