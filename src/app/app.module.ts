@@ -4,6 +4,8 @@ import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
 import { ClarityModule } from "@clr/angular";
 import { RouterModule, Routes } from '@angular/router';
 
+import { GoogleChartsModule } from 'angular-google-charts';
+
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { HeaderComponent } from './header/header.component';
@@ -56,6 +58,7 @@ const appRoutes: Routes = [
     BrowserAnimationsModule,
     ClarityModule,
     AppRoutingModule,
+    GoogleChartsModule.forRoot(),
     RouterModule.forRoot(
       appRoutes,
       { enableTracing: true } // <-- debugging purposes only
