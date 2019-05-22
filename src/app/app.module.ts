@@ -16,6 +16,7 @@ import { MissoesComponent } from './Logado/missoes/missoes.component';
 import { MissoesSoloComponent } from './Logado/missoes-solo/missoes-solo.component';
 import { MissoesGrupoComponent } from './Logado/missoes-grupo/missoes-grupo.component';
 import { ProjetoComponent } from './Logado/projeto/projeto.component';
+import { DesafioComponent } from './Logado/desafio/desafio.component';
 
 const appRoutes: Routes = [
   { path: 'login', component: LoginComponent },
@@ -40,7 +41,8 @@ const appRoutes: Routes = [
     MissoesComponent,
     MissoesSoloComponent,
     MissoesGrupoComponent,
-    ProjetoComponent
+    ProjetoComponent,
+    DesafioComponent
   ],
   imports: [
     BrowserModule,
