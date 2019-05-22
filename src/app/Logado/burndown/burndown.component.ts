@@ -22,7 +22,7 @@ export class BurndownComponent implements OnInit {
       vAxis:{
          title: 'Sprint Packlog'
       },
-      backgroundColor:'#e5e5e5',
+      backgroundColor:'#f9f9f9',
       pointSize:3
    };
   width = 1000;
