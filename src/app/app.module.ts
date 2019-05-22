@@ -14,6 +14,7 @@ import { HomeComponent } from './Deslogado/home/home.component';
 import { DashboardComponent } from './Logado/dashboard/dashboard.component';
 import { MissoesComponent } from './Logado/missoes/missoes.component';
 import { MissoesSoloComponent } from './Logado/missoes-solo/missoes-solo.component';
+import { MissoesGrupoComponent } from './Logado/missoes-grupo/missoes-grupo.component';
 
 const appRoutes: Routes = [
   { path: 'login', component: LoginComponent },
@@ -34,7 +35,8 @@ const appRoutes: Routes = [
     HomeComponent,
     DashboardComponent,
     MissoesComponent,
-    MissoesSoloComponent
+    MissoesSoloComponent,
+    MissoesGrupoComponent
   ],
   imports: [
     BrowserModule,
