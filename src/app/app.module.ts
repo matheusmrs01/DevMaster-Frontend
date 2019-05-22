@@ -13,6 +13,7 @@ import { CriarJogadorComponent } from './Deslogado/criar-jogador/criar-jogador.c
 import { HomeComponent } from './Deslogado/home/home.component';
 import { DashboardComponent } from './Logado/dashboard/dashboard.component';
 import { MissoesComponent } from './Logado/missoes/missoes.component';
+import { MissoesSoloComponent } from './Logado/missoes-solo/missoes-solo.component';
 
 const appRoutes: Routes = [
   { path: 'login', component: LoginComponent },
@@ -32,7 +33,8 @@ const appRoutes: Routes = [
     CriarJogadorComponent,
     HomeComponent,
     DashboardComponent,
-    MissoesComponent
+    MissoesComponent,
+    MissoesSoloComponent
   ],
   imports: [
     BrowserModule,
