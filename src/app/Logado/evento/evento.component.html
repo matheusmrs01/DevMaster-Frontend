@@ -1,3 +1,207 @@
-<p>
-  evento works!
-</p>
+<div class="main-container">
+
+  <clr-modal [(clrModalOpen)]="premios" [clrModalSize]="'lg'" [clrModalStaticBackdrop]="false">
+    <div class="modal-body">
+      <div class="clr-row clr-justify-content-center">
+
+        <div class="clr-col-12 clr-align-self-center">
+
+          <div class="clr-row clr-justify-content-center">
+            <div class="clr-col-sm-12 clr-col-md-6">
+              <div class="card">
+                <div class="card-header">
+                  Premiação por Colocação
+                </div>
+                <div class="card-block">
+                  <div class="card-text">
+                    <ol class="list">
+                      <li>Item 1</li>
+                      <li>Item 2</li>
+                      <li>Item 3</li>
+                      <li>Item 4</li>
+                      <li>Item 5</li>
+                      <li>Item 6</li>
+                    </ol>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <div class="modal-footer">
+      <button type="button" class="btn btn-primary" (click)="premios = false">Ok</button>
+    </div>
+  </clr-modal>
+
+  <clr-modal [(clrModalOpen)]="premiados" [clrModalSize]="'lg'" [clrModalStaticBackdrop]="false">
+    <div class="modal-body">
+      <div class="clr-row clr-justify-content-center">
+
+        <div class="clr-col-12 clr-align-self-center">
+
+          <div class="clr-row clr-justify-content-center">
+            <div class="clr-col-sm-12 clr-col-md-6">
+              <div class="card">
+                <div class="card-header">
+                  Premiação por Colocação
+                </div>
+                <div class="card-block">
+                  <div class="card-text">
+                    <ol class="list">
+                      <li>
+                        Jogador 1
+                        <ul class="list" style="list-style-type: none;">
+                          <li>Item 1</li>
+                        </ul>
+                      </li>
+
+                      <li>
+                        Jogador 2
+                        <ul class="list" style="list-style-type: none;">
+                          <li>Item 2</li>
+                        </ul>
+                      </li>
+
+                      <li>
+                        Jogador 3
+                        <ul class="list" style="list-style-type: none;">
+                          <li>Item 3</li>
+                        </ul>
+                      </li>
+
+                      <li>
+                        Jogador 4
+                        <ul class="list" style="list-style-type: none;">
+                          <li>Item 4</li>
+                        </ul>
+                      </li>
+
+                      <li>
+                        Jogador 5
+                        <ul class="list" style="list-style-type: none;">
+                          <li>Item 5</li>
+                        </ul>
+                      </li>
+
+                      <li>
+                        Jogador 6
+                        <ul class="list" style="list-style-type: none;">
+                          <li>Item 6</li>
+                        </ul>
+                      </li>
+                    </ol>
+
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <div class="modal-footer">
+      <button type="button" class="btn btn-primary" (click)="premiados = false">Ok</button>
+    </div>
+  </clr-modal>
+
+  <div class="clr-row clr-justify-content-center">
+    <div class="clr-col-7 clr-align-self-center">
+      <div class="clr-row">
+        <div class="clr-col">
+          <h3>Eventos</h3>
+        </div>
+
+
+        <div class="clr-col-1.5">
+          <button type="button" class="btn btn-primary">Pegar premiação!</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="clr-row clr-justify-content-center">
+    <div class="clr-col-7 clr-align-self-center">
+      <clr-tabs>
+        <clr-tab>
+          <button clrTabLink id="link1">Ativos</button>
+          <clr-tab-content id="content1" *clrIfActive=true>
+
+            <table class="table">
+              <thead>
+                <tr>
+                  <th>Evento</th>
+                  <th>XP</th>
+                  <th>Data de Inicio</th>
+                  <th>Premiação</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>Evento 4</td>
+                  <td>1x</td>
+                  <td>22/05/2019</td>
+                  <td>
+                    <button class="btn btn-info" (click)="premios = true">Premios</button>
+                  </td>
+                </tr>
+                <tr>
+                  <td>Evento 3</td>
+                  <td>2x</td>
+                  <td>21/05/2019</td>
+                  <td>
+                    <button class="btn btn-info" (click)="premios = true">Premios</button>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+
+          </clr-tab-content>
+        </clr-tab>
+        <clr-tab>
+          <button clrTabLink>Encerrados</button>
+          <clr-tab-content *clrIfActive>
+
+            <table class="table">
+              <thead>
+                <tr>
+                  <th>Evento</th>
+                  <th>XP</th>
+                  <th>Data de Inicio</th>
+                  <th>Data de Final</th>
+                  <th>Premiados</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>Evento 1</td>
+                  <td>1x</td>
+                  <td>10/05/2019</td>
+                  <td>20/05/2019</td>
+                  <td>
+                    <button class="btn btn-info" (click)="premiados = true">Premios</button>
+                  </td>
+                </tr>
+                <tr>
+                  <td>Evento 2</td>
+                  <td>2x</td>
+                  <td>20/05/2019</td>
+                  <td>21/05/2019</td>
+                  <td>
+                    <button class="btn btn-info" (click)="premios = true">Premios</button>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+
+          </clr-tab-content>
+        </clr-tab>
+      </clr-tabs>
+    </div>
+  </div>
+</div>
