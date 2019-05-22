@@ -24,7 +24,7 @@ const appRoutes: Routes = [
   { path: 'projetos', component: ProjetoComponent },
   { path: 'missoes', component: MissoesComponent },
   { path: 'missoes-solo/:id', component: MissoesSoloComponent },
-  { path: 'missoes-grupo', component: MissoesGrupoComponent },
+  { path: 'missoes-grupo/:id', component: MissoesGrupoComponent },
   { path: '', component: HomeComponent }
 ];
 

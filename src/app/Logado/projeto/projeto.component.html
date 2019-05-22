@@ -5,6 +5,10 @@
       <clr-stack-view>
         <clr-stack-header>
           <span class="stack-title">
+            <!-- 
+              Colocar um if para grupo e para projeto
+              -se for um grupo, o stack block tem que ter os participantes do grupo
+             -->
             Projetos do Gitlab
             <a role="tooltip" aria-haspopup="true" class="tooltip tooltip-md tooltip-bottom-right">
               <clr-icon shape="info-circle" size="24"></clr-icon>
@@ -20,7 +24,7 @@
         </clr-stack-block>
 
         <clr-stack-block>
-          <a [routerLink]="['/missoes-solo', 1]">
+          <a [routerLink]="['/missoes-grupo', 1]">
             <clr-stack-label>Projeto 2</clr-stack-label>
           </a>
         </clr-stack-block>
