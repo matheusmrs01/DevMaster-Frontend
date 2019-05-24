@@ -3,6 +3,10 @@ import { NgModule } from '@angular/core';
 import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
 import { ClarityModule } from "@clr/angular";
 import { RouterModule, Routes } from '@angular/router';
+import { FormsModule }   from '@angular/forms';
+import { HttpClient, HttpClientModule, HttpHeaders } from '@angular/common/http';
+import { HttpModule } from '@angular/http';
+// import { LoadingBarHttpClientModule } from '@ngx-loading-bar/http-client';
 
 import { GoogleChartsModule } from 'angular-google-charts';
 
@@ -58,10 +62,16 @@ const appRoutes: Routes = [
     BrowserAnimationsModule,
     ClarityModule,
     AppRoutingModule,
+
+    FormsModule,
+    HttpClientModule,
+    HttpModule,
+    // LoadingBarHttpClientModule,
+
     GoogleChartsModule.forRoot(),
     RouterModule.forRoot(
       appRoutes,
-      { enableTracing: true } // <-- debugging purposes only
+      { enableTracing: false } // <-- debugging purposes only
     )
   ],
 
