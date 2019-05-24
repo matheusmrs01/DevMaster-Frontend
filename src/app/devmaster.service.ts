@@ -24,11 +24,31 @@ export class DevmasterService {
     });
   }
 
+  //  -----------------  JOGADDOR -----------------
+
   getJogador(id, token): Observable<any> {
     return this.http.get<any>(this.API_URL + '/jogador/' + id, {
       headers: new HttpHeaders().set('authorization', 'Token ' + token)
     });
   }
+
+  save(username: string, senha: string, privatetoken: string, first_name: string, last_name: string, email: string, image: string) {
+
+    const jogador = {
+      "user": {
+        "username": username,
+        "password": senha,
+        "first_name": first_name,
+        "last_name": last_name,
+        "email": email
+      },
+      "private_token": privatetoken,
+      "url_imagem": image
+    };
+    return this.http.post(this.API_URL + '/criarjogador', JSON.parse(JSON.stringify(jogador)));
+  }
+
+  // -------------------- LOCAL STORAGE -------------------
 
   set(user, tokenn, tokengitlab) {
     let userL = 'Usuario Logado';
