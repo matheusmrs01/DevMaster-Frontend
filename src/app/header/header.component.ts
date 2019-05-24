@@ -28,7 +28,6 @@ export class HeaderComponent implements OnInit {
   atualizar(){
     let userL = 'Usuario Logado';
     this.usuario = JSON.parse(localStorage.getItem('Usuario Logado'));
-    console.log(this.usuario)
   }
 
 }
