@@ -5,23 +5,27 @@
             <span class="title">DevMaster</span>
         </a>
     </div>
-    <div class="header-nav">
+    <div *ngIf="usuario" class="header-nav">
         <a routerLink="dashboard" class="nav-link nav-text">Dashboard</a>
         <a routerLink="missoes" class="nav-link nav-text">Missões</a>
         <a routerLink="desafio" class="nav-link nav-text">Desafio</a>
         <a routerLink="evento" class="nav-link nav-text">Evento</a>
         <a routerLink="burndown" class="nav-link nav-text">BurnDown</a>
     </div>
-    <div class="header-actions">
+    <div *ngIf="usuario" class="header-actions">
         <clr-dropdown>
             <button class="nav-text" clrDropdownTrigger>
-                Nome do jogador
+                {{usuario.username}}
                 <clr-icon shape="caret down"></clr-icon>
             </button>
             <clr-dropdown-menu *clrIfOpen clrPosition="bottom-right">
                 <a href="..." clrDropdownItem>Preferences</a>
-                <a href="..." clrDropdownItem>Logout</a>
+                <a routerLink="" (click)="logout()" clrDropdownItem>Logout</a>
             </clr-dropdown-menu>
         </clr-dropdown>
+    </div>
+
+    <div *ngIf="!usuario" class="header-actions">
+        <a routerLink="login" class="nav-link nav-text">Login</a>
     </div>
 </header>
