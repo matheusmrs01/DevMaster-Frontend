@@ -48,6 +48,14 @@ export class DevmasterService {
     return this.http.post(this.API_URL + '/criarjogador', JSON.parse(JSON.stringify(jogador)));
   }
 
+  //  -----------------  JOGADDOR ITEM -----------------
+
+  getJogadorItens(token) {
+    return this.http.get(this.API_URL + '/jogadoritens/itens', {
+      headers: new HttpHeaders().set('authorization', 'Token ' + token)
+    });
+  }
+
   // -------------------- LOCAL STORAGE -------------------
 
   set(user, tokenn, tokengitlab) {
