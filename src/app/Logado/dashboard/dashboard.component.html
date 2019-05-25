@@ -7,32 +7,61 @@
           Perfil
         </div>
         <div class="card-block">
-          <div class="card-media-block">
-            <img src="..." class="card-media-image" style="width: 180%; height: 125px;">
-            <div class="card-media-description clr-align-self-center" style="position: relative; left: 80px">
-              <span class="card-media-title">
-                Nome:
-              </span>
-              <span class="card-media-text">
-                Desafios vencidos:
-              </span>
-              <span class="card-media-text">
-                Missões Realizadas:
-              </span>
-              <span class="card-media-text">
-                Eventos Ganho:
-              </span>
-              <span class="card-media-text">
-                XP Total:
-              </span>
+          <div class="clr-row">
+            <div class="clr-col-6">
+              <div class="card-media-block">
+                <img src="{{jogador.url_imagem}}" class="card-media-image" style="width: 180%; height: 125px;">
+              </div>
+            </div>
+
+            <div class="clr-col-6">
+              <div class="card-media-description clr-align-self-center" style="position: relative; right: 50px">
+
+                <div class="clr-row">
+                  <span class="card-media-title">
+                    Nome: {{jogador.user.first_name}} {{jogador.user.last_name}}
+                  </span>
+                </div>
+
+                <div class="clr-row">
+                  <span class="card-media-title">
+                    Nivel: {{getNivel(jogador.xp_total) + 1}}
+                  </span>
+                </div>
+
+                <div class="clr-row">
+                  <span class="card-media-text">
+                    Desafios vencidos: {{jogador.desafios_v}}
+                  </span>
+                </div>
+
+                <div class="clr-row">
+                  <span class="card-media-text">
+                    Missões Realizadas: {{jogador.m_realizadas}}
+                  </span>
+                </div>
+
+                <div class="clr-row">
+                  <span class="card-media-text">
+                    Eventos Ganho: {{jogador.eventos_v}}
+                  </span>
+                </div>
+
+                <div class="clr-row">
+                  <span class="card-media-text">
+                    XP Total: {{jogador.xp_total}}
+                  </span>
+                </div>
+
+              </div>
             </div>
           </div>
         </div>
         <div class="card-text barra">
           <div class="progress labeled">
-            <progress max="100" value="90" data-displayval="90%"></progress>
+            <progress max="100" value="{{progress}}" data-displayval="100%"></progress>
             <span>
-              90%
+              {{progress}}%
             </span>
           </div>
         </div>
@@ -44,9 +73,9 @@
         <div class="card-header">
           Mochila
           <a role="tooltip" aria-haspopup="true" class="tooltip tooltip-md tooltip-bottom-right">
-              <clr-icon shape="info-circle" size="24"></clr-icon>
-              <span class="tooltip-content">Para usar um item é necessario falar com o moderador!</span>
-            </a>
+            <clr-icon shape="info-circle" size="24"></clr-icon>
+            <span class="tooltip-content">Para usar um item é necessario falar com o moderador!</span>
+          </a>
         </div>
         <div class="card-block">
           <div class="card-media-block">
@@ -92,37 +121,37 @@
   <div class="clr-row clr-justify-content-center">
     <div class="clr-col-5 clr-align-self-center">
 
-    <div class="card">
-      <div class="card-header">
-        Ranking 1
+      <div class="card">
+        <div class="card-header">
+          Ranking 1
+        </div>
+        <div class="card-block">
+          <ol class="list">
+            <li>Ullamco Laboris</li>
+            <li>Nisi Ut Aliquip</li>
+            <li>Consequat</li>
+            <li>Excepteur sint occaecat cupidatat non proident</li>
+            <li>Enim ad Minim</li>
+          </ol>
+        </div>
       </div>
-      <div class="card-block">
-        <ol class="list">
-          <li>Ullamco Laboris</li>
-          <li>Nisi Ut Aliquip</li>
-          <li>Consequat</li>
-          <li>Excepteur sint occaecat cupidatat non proident</li>
-          <li>Enim ad Minim</li>
-        </ol>
-      </div>
-    </div>
 
     </div>
     <div class="clr-col-5 clr-align-self-center">
-    <div class="card">
-      <div class="card-header">
-        Ranking 2
+      <div class="card">
+        <div class="card-header">
+          Ranking 2
+        </div>
+        <div class="card-block">
+          <ol class="list">
+            <li>Ullamco Laboris</li>
+            <li>Nisi Ut Aliquip</li>
+            <li>Consequat</li>
+            <li>Excepteur sint occaecat cupidatat non proident</li>
+            <li>Enim ad Minim</li>
+          </ol>
+        </div>
       </div>
-      <div class="card-block">
-        <ol class="list">
-          <li>Ullamco Laboris</li>
-          <li>Nisi Ut Aliquip</li>
-          <li>Consequat</li>
-          <li>Excepteur sint occaecat cupidatat non proident</li>
-          <li>Enim ad Minim</li>
-        </ol>
-      </div>
-    </div>
     </div>
   </div>
 
@@ -130,37 +159,37 @@
   <div class="clr-row clr-justify-content-center">
     <div class="clr-col-5 clr-align-self-center">
 
-    <div class="card">
-      <div class="card-header">
-        Ranking 3
+      <div class="card">
+        <div class="card-header">
+          Ranking 3
+        </div>
+        <div class="card-block">
+          <ol class="list">
+            <li>Ullamco Laboris</li>
+            <li>Nisi Ut Aliquip</li>
+            <li>Consequat</li>
+            <li>Excepteur sint occaecat cupidatat non proident</li>
+            <li>Enim ad Minim</li>
+          </ol>
+        </div>
       </div>
-      <div class="card-block">
-        <ol class="list">
-          <li>Ullamco Laboris</li>
-          <li>Nisi Ut Aliquip</li>
-          <li>Consequat</li>
-          <li>Excepteur sint occaecat cupidatat non proident</li>
-          <li>Enim ad Minim</li>
-        </ol>
-      </div>
-    </div>
 
     </div>
     <div class="clr-col-5 clr-align-self-center">
-    <div class="card">
-      <div class="card-header">
-        Ranking 4
+      <div class="card">
+        <div class="card-header">
+          Ranking 4
+        </div>
+        <div class="card-block">
+          <ol class="list">
+            <li>Ullamco Laboris</li>
+            <li>Nisi Ut Aliquip</li>
+            <li>Consequat</li>
+            <li>Excepteur sint occaecat cupidatat non proident</li>
+            <li>Enim ad Minim</li>
+          </ol>
+        </div>
       </div>
-      <div class="card-block">
-        <ol class="list">
-          <li>Ullamco Laboris</li>
-          <li>Nisi Ut Aliquip</li>
-          <li>Consequat</li>
-          <li>Excepteur sint occaecat cupidatat non proident</li>
-          <li>Enim ad Minim</li>
-        </ol>
-      </div>
-    </div>
     </div>
   </div>
 </div>

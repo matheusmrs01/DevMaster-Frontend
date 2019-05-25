@@ -3,7 +3,12 @@
 }
 
 .barra {
-    margin-top: 35px;
+    margin-top: 25px;
     margin-right: 2px;
     margin-left: 6px;
+}
+
+.card-media-image{
+    max-width: 6rem !important;
+    max-height: 6.5rem !important;
 }
