@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from "@angular/router";
 
 import { DevmasterService } from '../../devmaster.service';
+import { GitlabService } from '../../gitlab.service';
 
 @Component({
   selector: 'app-criar-jogador',
@@ -21,7 +22,7 @@ export class CriarJogadorComponent implements OnInit {
 
   constructor(
     private devMasterService: DevmasterService,
-    // private gitlabService: GitlabService,
+    private gitlabService: GitlabService,
     private router: Router
   ) { }
 
@@ -29,20 +30,20 @@ export class CriarJogadorComponent implements OnInit {
   }
 
   cadastrar() {
-    // this.gitlabService.getGitlabUser(this.username, this.privatetoken).subscribe(GitLabUser => { GitLabUser[0].avatar_url <-- image gitlab
-    this.devMasterService.save(this.username, this.senha, this.privatetoken, this.nome, this.sobrenome, this.email, 'essa é a foto')
-      .subscribe(
-        usuario => {
-          this.limpar();
-          this.cadastro_ok = true;
-          this.router.navigate(['login']);
-        },
-        erro => {
-          this.cadastro_erro = true;
-          this.cadastro_ok = false;
-        }
-      );
-    // });
+    this.gitlabService.getGitlabUser(this.username, this.privatetoken).subscribe(GitLabUser => {
+      this.devMasterService.save(this.username, this.senha, this.privatetoken, this.nome, this.sobrenome, this.email, GitLabUser[0].avatar_url)
+        .subscribe(
+          usuario => {
+            this.limpar();
+            this.cadastro_ok = true;
+            this.router.navigate(['login']);
+          },
+          erro => {
+            this.cadastro_erro = true;
+            this.cadastro_ok = false;
+          }
+        );
+    });
   }
 
   limpar() {

@@ -28,9 +28,7 @@ export class GitlabService {
   }
 
   public getGitlabUser(username, token): Observable<any> {
-    return this.http.get<any>(this.API_URL + 'users?username=' + username, {
-      headers: new HttpHeaders().set('PRIVATE-TOKEN', token)
-    });
+    return this.http.get<any>(this.API_URL + 'users?username=' + username);
   }
 
   public getIssueState(state, page: string): Observable<any> {
