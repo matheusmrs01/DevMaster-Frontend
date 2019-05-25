@@ -12,3 +12,8 @@
     max-width: 6rem !important;
     max-height: 6.5rem !important;
 }
+
+.overflow {
+    height: 230px;
+    overflow: auto;
+}

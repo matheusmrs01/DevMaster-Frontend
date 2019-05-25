@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { DevmasterService } from '../../devmaster.service';
+import { Items } from '@clr/angular/data/datagrid/providers/items';
 
 @Component({
   selector: 'app-dashboard',
@@ -9,6 +10,7 @@ import { DevmasterService } from '../../devmaster.service';
 export class DashboardComponent implements OnInit {
 
   jogador = null;
+  jogador_itens = null;
   public xp_total = 8;
   data = new Date('2018-10-27');
   data2 = new Date('2018-10-22');
@@ -28,8 +30,6 @@ export class DashboardComponent implements OnInit {
           Jogador => {
             this.jogador = Jogador;
             this.progress = this.getProgress(Jogador.xp_total);
-            console.log(this.jogador)
-            console.log(this.progress)
           },
           erro => {
             this.jogador = 'Error no GetJogador';
@@ -38,6 +38,16 @@ export class DashboardComponent implements OnInit {
       },
       erro => {
         this.jogador = 'Error no getUser';
+      }
+    );
+
+    this.devMasterService.getJogadorItens(JSON.parse(localStorage.getItem('Usuario Logado')).token).subscribe(
+      Items => {
+        this.jogador_itens = Items
+        console.log(this.jogador_itens)
+      },
+      erro => {
+        this.jogador_itens = 'Error no GetItens'
       }
     );
 
@@ -61,7 +71,6 @@ export class DashboardComponent implements OnInit {
         nivel = nivel + 1;
       }
     }
-    console.log(nivel)
     return nivel;
   }
   getProgress(xp_total) {
