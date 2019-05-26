@@ -82,6 +82,12 @@ export class DevmasterService {
     });
   }
 
+  gerarPremiacao(token, id){
+    return this.http.get(this.API_URL + '/evento/gerarPremiacao/' + id, {
+      headers: new HttpHeaders().set('authorization', 'Token ' + token)
+    });
+  }
+
   // -------------------- LOCAL STORAGE -------------------
 
   set(user, tokenn, tokengitlab) {
