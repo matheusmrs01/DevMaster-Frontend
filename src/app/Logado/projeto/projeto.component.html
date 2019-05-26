@@ -1,46 +1,64 @@
 <div class="main-container">
   <div class="clr-row clr-justify-content-center">
     <div class="clr-col-8 clr-align-self-center">
+      <div class="clr-col-7 clr-align-self-center">
+        <div class="clr-row">
+          <div class="clr-col">
+            <div *ngIf="tipo == 1">
+              <h3>Projetos</h3>
+            </div>
+            <div *ngIf="tipo == 2">
+              <h3>Grupos</h3>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div *ngIf="tipo == 1">
+        <table class="table">
+          <thead>
+            <tr>
+              <th>Projeto</th>
+              <th>Descrição</th>
+              <th>Missões</th>
+            </tr>
+          </thead>
+          <tbody>
+            <ng-container *ngFor="let projeto of projetos">
+              <tr>
+                <td>{{projeto.name}}</td>
+                <td>{{projeto.description}}</td>
+                <td><button class="btn btn-primary" [routerLink]="['/missoes-solo', projeto.id]">Ir!</button>
+                </td>
+              </tr>
+            </ng-container>
+          </tbody>
+        </table>
+      </div>
 
-      <clr-stack-view>
-        <clr-stack-header>
-          <span class="stack-title">
-            <!-- 
-              Colocar um if para grupo e para projeto
-              -se for um grupo, o stack block tem que ter os participantes do grupo
-             -->
-            Projetos do Gitlab
-            <a role="tooltip" aria-haspopup="true" class="tooltip tooltip-md tooltip-bottom-right">
-              <clr-icon shape="info-circle" size="24"></clr-icon>
-              <span class="tooltip-content">Clique no projeto para ver as missões!</span>
-            </a>
-          </span>
-        </clr-stack-header>
+      <div *ngIf="tipo == 2">
+        <table class="table">
+          <thead>
+            <tr>
+              <th>Grupo</th>
+              <th>XP Ganha com o Grupo</th>
+              <th>Missões</th>
+            </tr>
+          </thead>
+          <tbody>
+            <ng-container *ngFor="let grupo of grupos">
+              <ng-container *ngIf="!grupo.status">
+                <tr>
+                  <td>{{grupo.name}}</td>
+                  <td>{{grupo.xp_grupo}}</td>
+                  <td><button class="btn btn-primary" [routerLink]="['/missoes-grupo', grupo.id]">Ir!</button>
+                  </td>
+                </tr>
+              </ng-container>
+            </ng-container>
+          </tbody>
+        </table>
+      </div>
 
-        <clr-stack-block>
-          <a [routerLink]="['/missoes-solo', 1]">
-            <clr-stack-label>Projeto 1</clr-stack-label>
-          </a>
-        </clr-stack-block>
-
-        <clr-stack-block>
-          <a [routerLink]="['/missoes-grupo', 1]">
-            <clr-stack-label>Projeto 2</clr-stack-label>
-          </a>
-        </clr-stack-block>
-
-        <clr-stack-block>
-          <a [routerLink]="['/missoes-solo', 1]">
-            <clr-stack-label>Projeto 3</clr-stack-label>
-          </a>
-        </clr-stack-block>
-
-        <clr-stack-block>
-          <a [routerLink]="['/missoes-solo', 1]">
-            <clr-stack-label>Projeto 4</clr-stack-label>
-          </a>
-        </clr-stack-block>
-      </clr-stack-view>
     </div>
   </div>
 </div>
