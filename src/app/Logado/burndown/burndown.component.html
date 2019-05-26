@@ -1,10 +1,66 @@
 <div class="main-container">
-  <div class="clr-row clr-justify-content-center">
-    <div class="clr-col-7 clr-align-self-center">
-      <h1>Burndown Chart</h1>
+
+  <clr-modal [(clrModalOpen)]="burndown_chart" [clrModalSize]="'xl'">
+    <h3 class="modal-title">Burndown Chart</h3>
+    <div class="modal-body">
+
+
       <google-chart #chart [title]="title" [type]="type" [data]="data" [columnNames]="columnNames" [options]="options"
         [width]="width" [height]="height">
       </google-chart>
+
+
+    </div>
+    <div class="modal-footer">
+
+      <button type="button" class="btn btn-primary" (click)="burndown_chart = false">Ok</button>
+    </div>
+  </clr-modal>
+
+  <div class="clr-row clr-justify-content-center">
+    <div class="clr-col-7 clr-align-self-center">
+      <div class="clr-row">
+        <div class="clr-col">
+          <h3>Burndowns</h3>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="clr-row clr-justify-content-center">
+    <div class="clr-col-7 clr-align-self-center">
+
+      <table class="table">
+        <thead>
+          <tr>
+            <th>Ativo</th>
+            <th>Data Inicio</th>
+            <th>Data Término</th>
+            <th>Missões</th>
+            <th>Missões Queimadas</th>
+            <th>Gráfico</th>
+          </tr>
+        </thead>
+        <tbody>
+          <ng-container *ngFor="let burndown of burndowns">
+            <tr>
+              <td>{{burndown.is_active}}</td>
+              <td>{{burndown.data_inicio}}</td>
+              <td>{{burndown.data_termino}}</td>
+              <td>{{burndown.quantidade_missao}}</td>
+              <td>{{getQuantidade(burndown)}}</td>
+              <td>
+                <button class="btn btn-info" (click)="burndown_chart = true;getData(burndown)">Abrir</button>
+              </td>
+            </tr>
+          </ng-container>
+        </tbody>
+      </table>
+
+      <!-- <h1>Burndown Chart</h1>
+      <google-chart #chart [title]="title" [type]="type" [data]="data" [columnNames]="columnNames" [options]="options"
+        [width]="width" [height]="height">
+      </google-chart> -->
 
     </div>
   </div>
