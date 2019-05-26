@@ -143,6 +143,20 @@ export class DevmasterService {
     });
   }
 
+  // -------------------- BURNDOWN -------------------
+
+  getBurndowns(): Observable<any[]>{
+    return this.http.get<any[]>(this.API_URL + '/burndown/ListarBurndown', {
+      headers: new HttpHeaders().set('authorization', 'Token ' + JSON.parse(localStorage.getItem('Usuario Logado')).token)
+    });
+  }
+
+  getBurndown(id): Observable<any[]>{
+    return this.http.get<any[]>(this.API_URL + '/burndown/ConsultarBurndown/' + id, {
+      headers: new HttpHeaders().set('authorization', 'Token ' + JSON.parse(localStorage.getItem('Usuario Logado')).token)
+    });
+  }
+
   // -------------------- LOCAL STORAGE -------------------
 
   set(user, tokenn, tokengitlab) {
