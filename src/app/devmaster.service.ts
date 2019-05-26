@@ -32,7 +32,7 @@ export class DevmasterService {
     });
   }
 
-  getJogadores(): Observable<any>{
+  getJogadores(): Observable<any> {
     return this.http.get<any>(this.API_URL + '/jogador', {
       headers: new HttpHeaders().set('authorization', 'Token ' + JSON.parse(localStorage.getItem('Usuario Logado')).token)
     });
@@ -58,6 +58,14 @@ export class DevmasterService {
 
   getJogadorItens(token) {
     return this.http.get(this.API_URL + '/jogadoritens/itens', {
+      headers: new HttpHeaders().set('authorization', 'Token ' + token)
+    });
+  }
+
+  //  -----------------  EVENTO -----------------
+
+  getEventos(token) {
+    return this.http.get(this.API_URL + '/evento/consultarEventos', {
       headers: new HttpHeaders().set('authorization', 'Token ' + token)
     });
   }

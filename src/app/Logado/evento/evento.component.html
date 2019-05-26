@@ -142,22 +142,16 @@
                 </tr>
               </thead>
               <tbody>
-                <tr>
-                  <td>Evento 4</td>
-                  <td>1x</td>
-                  <td>22/05/2019</td>
-                  <td>
-                    <button class="btn btn-info" (click)="premios = true">Premios</button>
-                  </td>
-                </tr>
-                <tr>
-                  <td>Evento 3</td>
-                  <td>2x</td>
-                  <td>21/05/2019</td>
-                  <td>
-                    <button class="btn btn-info" (click)="premios = true">Premios</button>
-                  </td>
-                </tr>
+                <ng-container *ngFor="let evento of eventos">
+                  <ng-container *ngIf="evento.is_active">
+                    <tr>
+                      <td>{{evento.name}}</td>
+                      <td>{{evento.multiplicador_xp}}</td>
+                      <td>{{evento.data_inicio}}</td>
+                      <td><button class="btn btn-info" (click)="premios = true">Premios</button></td>
+                    </tr>
+                  </ng-container>
+                </ng-container>
               </tbody>
             </table>
 
@@ -178,24 +172,17 @@
                 </tr>
               </thead>
               <tbody>
-                <tr>
-                  <td>Evento 1</td>
-                  <td>1x</td>
-                  <td>10/05/2019</td>
-                  <td>20/05/2019</td>
-                  <td>
-                    <button class="btn btn-info" (click)="premiados = true">Premios</button>
-                  </td>
-                </tr>
-                <tr>
-                  <td>Evento 2</td>
-                  <td>2x</td>
-                  <td>20/05/2019</td>
-                  <td>21/05/2019</td>
-                  <td>
-                    <button class="btn btn-info" (click)="premios = true">Premios</button>
-                  </td>
-                </tr>
+                <ng-container *ngFor="let evento of eventos">
+                  <ng-container *ngIf="!evento.is_active">
+                    <tr>
+                      <td>{{evento.name}}</td>
+                      <td>{{evento.multiplicador_xp}}</td>
+                      <td>{{evento.data_inicio}}</td>
+                      <td>{{evento.data_final}}</td>
+                      <td><button class="btn btn-info" (click)="premiados = true">Premios</button></td>
+                    </tr>
+                  </ng-container>
+                </ng-container>
               </tbody>
             </table>
 
