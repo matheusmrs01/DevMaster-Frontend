@@ -137,6 +137,12 @@ export class DevmasterService {
     });
   }
 
+  getMissoesGrupo(id): Observable<any[]>{
+    return this.http.get<any[]>(this.API_URL + '/grupo/missoes/' + id, {
+      headers: new HttpHeaders().set('authorization', 'Token ' + JSON.parse(localStorage.getItem('Usuario Logado')).token)
+    });
+  }
+
   // -------------------- LOCAL STORAGE -------------------
 
   set(user, tokenn, tokengitlab) {
