@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute, Router } from "@angular/router";
+import { DevmasterService } from '../../devmaster.service';
+import { GitlabService } from '../../gitlab.service';
 
 @Component({
   selector: 'app-missoes-grupo',
@@ -7,9 +10,48 @@ import { Component, OnInit } from '@angular/core';
 })
 export class MissoesGrupoComponent implements OnInit {
 
-  constructor() { }
+  id_grupo = null
+  grupo = null 
+  missoes = null
+  id_jogador = null
+  id_milestone = null
+
+  constructor(
+    private routeAc: ActivatedRoute,
+    private router: Router,
+    private devMasterService: DevmasterService,
+  ) { }
 
   ngOnInit() {
+    this.id_grupo = parseInt(this.routeAc.snapshot.paramMap.get('id'));
+
+    this.devMasterService.getJogador(JSON.parse(localStorage.getItem('Usuario Logado')).id, JSON.parse(localStorage.getItem('Usuario Logado')).token).subscribe(
+      Jogador => {
+        this.id_jogador = Jogador.id;
+        console.log(this.id_jogador)
+      },
+      erro => {
+        this.id_jogador = 'Error no GetJogador';
+      }
+    );
+
+    this.devMasterService.getGrupo(this.id_grupo).subscribe( Grupo => {
+      this.grupo = Grupo['Grupo']
+      },
+      Error => {
+        this.grupo = 'Erro no getProject'
+      }
+    )
+
+    this.devMasterService.getMissoesGrupo(this.id_grupo).subscribe( Missoes => {
+      this.missoes = Missoes['Missoes']
+      console.log(this.missoes)
+      },
+      Error => {
+        this.missoes = 'Erro no getProject'
+      }
+    )
+
   }
 
 }

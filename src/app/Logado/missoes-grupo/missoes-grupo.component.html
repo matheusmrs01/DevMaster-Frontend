@@ -2,7 +2,7 @@
   <div class="clr-row clr-justify-content-center">
     <div class="clr-col-6 clr-align-self-center">
       <h4>
-        Missões do Projeto: x do grupo: id_milestone
+        Grupo: {{grupo?.name}}
         <a role="tooltip" aria-haspopup="true" class="tooltip tooltip-md tooltip-bottom-right">
           <clr-icon shape="info-circle" size="24"></clr-icon>
           <span class="tooltip-content">Sobre as labels</span>
@@ -13,20 +13,40 @@
         <clr-tab>
           <button clrTabLink id="link1">Concluidas</button>
           <clr-tab-content id="content1" *clrIfActive="true">
-            <div class="card">
-              <div class="card-block">
-                <div class="card-title">
-                  Missão:
+
+            <div *ngFor="let m of missoes">
+              <div *ngIf="m.status == true && m.jogador.id == id_jogador && m.id_milestone == grupo.id_milestone">
+
+                <div class="card">
+                  <div class="card-block">
+                    <div class="card-title">
+                      Missão: {{m.nome_missao}}
+                    </div>
+                    <div class="card-text">
+                      XP adquirida com a missão: {{m.xp_ganha}}
+                    </div>
+                  </div>
+                  <div class="card-footer">
+
+                    <ng-container *ngIf="m.nice_data">
+                      <span class="label label-info">Terminada na data certa!</span>
+                    </ng-container>
+
+                    <ng-container *ngIf="m.nice_tempo">
+                      <span class="label label-success">Terminada em tempo record!</span>
+                    </ng-container>
+
+                    <ng-container *ngIf="!m.nice_data">
+                      <span class="label label-warning">Não terminada na data certa!</span>
+                    </ng-container>
+
+                    <ng-container *ngIf="!m.nice_tempo">
+                      <span class="label label-danger">Não terminada no tempo certo!</span>
+                    </ng-container>
+
+                  </div>
+
                 </div>
-                <div class="card-text">
-                  XP adquirida com a missão:
-                </div>
-              </div>
-              <div class="card-footer">
-                <span class="label label-info">Terminada na data certa!</span>
-                <span class="label label-success">Terminada em tempo record!</span>
-                <span class="label label-warning">Não terminada na data certa!</span>
-                <span class="label label-danger">Não terminada no tempo certo!</span>
               </div>
             </div>
 
@@ -36,20 +56,30 @@
         <clr-tab>
           <button clrTabLink>Em Andamento</button>
           <clr-tab-content *clrIfActive>
-            <div class="card">
-              <div class="card-block">
-                <div class="card-title">
-                  Missão:
+
+            <div *ngFor="let m of missoes">
+              <div *ngIf="m.status == false && m.jogador.id == id_jogador && m.id_milestone == grupo.id_milestone">
+
+                <div class="card">
+                  <div class="card-block">
+                    <div class="card-title">
+                      Missão: {{m.nome_missao}}
+                    </div>
+                    <div class="card-text">
+                      XP que pode ser adquirida com a missão: {{m.xp_missao}}
+                    </div>
+                  </div>
+                  <div class="card-footer">
+
+                    <span class="label label-warning">Não terminada na data certa: -20 xp!</span>
+                    <span class="label label-danger">Não terminada no tempo certo: -50xp!</span>
+
+                  </div>
+
                 </div>
-                <div class="card-text">
-                  XP que pode ser adquirida com a missão:
-                </div>
-              </div>
-              <div class="card-footer">
-                <span class="label label-warning">Não terminada na data certa: -20 xp!</span>
-                <span class="label label-danger">Não terminada no tempo certo: -50xp!</span>
               </div>
             </div>
+
           </clr-tab-content>
         </clr-tab>
 
@@ -59,23 +89,47 @@
             <clr-tabs>
 
               <clr-tab>
-                <button clrTabLink id="link1"><clr-icon shape="check" class="text-success"></clr-icon></button>
+                <button clrTabLink id="link1">
+                  <clr-icon shape="check" class="text-success"></clr-icon>
+                </button>
                 <clr-tab-content id="content1" *clrIfActive="true">
-                  <div class="card">
-                    <div class="card-block">
-                      <div class="card-title">
-                        Missão:
+
+                  <div *ngFor="let m of missoes">
+                    <div *ngIf="m.status == true && m.jogador.id != id_jogador && m.id_milestone == grupo.id_milestone">
+
+                      <div class="card">
+                        <div class="card-block">
+                          <div class="card-title">
+                            Missão: {{m.nome_missao}}
+                          </div>
+                          <div class="card-text">
+                            Responsavel: {{m.jogador.user.first_name}} {{m.jogador.user.last_name}}
+                          </div>
+                          <div class="card-text">
+                            XP adquirida com a missão: {{m.xp_ganha}}
+                          </div>
+                        </div>
+                        <div class="card-footer">
+
+                          <ng-container *ngIf="m.nice_data">
+                            <span class="label label-info">Terminada na data certa!</span>
+                          </ng-container>
+
+                          <ng-container *ngIf="m.nice_tempo">
+                            <span class="label label-success">Terminada em tempo record!</span>
+                          </ng-container>
+
+                          <ng-container *ngIf="!m.nice_data">
+                            <span class="label label-warning">Não terminada na data certa!</span>
+                          </ng-container>
+
+                          <ng-container *ngIf="!m.nice_tempo">
+                            <span class="label label-danger">Não terminada no tempo certo!</span>
+                          </ng-container>
+
+                        </div>
+
                       </div>
-                      <div class="card-text">
-                        XP da missão: <br/>
-                        Responsavel:
-                      </div>
-                    </div>
-                    <div class="card-footer">
-                      <span class="label label-info">Terminada na data certa!</span>
-                      <span class="label label-success">Terminada em tempo record!</span>
-                      <span class="label label-warning">Não terminada na data certa!</span>
-                      <span class="label label-danger">Não terminada no tempo certo!</span>
                     </div>
                   </div>
 
@@ -83,21 +137,33 @@
               </clr-tab>
 
               <clr-tab>
-                <button clrTabLink><clr-icon shape="times" class="text-danger"></clr-icon></button>
+                <button clrTabLink>
+                  <clr-icon shape="times" class="text-danger"></clr-icon>
+                </button>
                 <clr-tab-content *clrIfActive>
-                  <div class="card">
-                    <div class="card-block">
-                      <div class="card-title">
-                        Missão:
+                  <div *ngFor="let m of missoes">
+                    <div *ngIf="m.status == false && m.jogador.id != id_jogador && m.id_milestone == grupo.id_milestone">
+
+                      <div class="card">
+                        <div class="card-block">
+                          <div class="card-title">
+                            Missão: {{m.nome_missao}}
+                          </div>
+                          <div class="card-text">
+                            Responsavel: {{m.jogador.user.first_name}} {{m.jogador.user.last_name}}
+                          </div>
+                          <div class="card-text">
+                            XP que pode adquirida com a missão: {{m.xp_missao}}
+                          </div>
+                        </div>
+                        <div class="card-footer">
+
+                          <span class="label label-warning">Não terminada na data certa: -20 xp!</span>
+                          <span class="label label-danger">Não terminada no tempo certo: -50xp!</span>
+
+                        </div>
+
                       </div>
-                      <div class="card-text">
-                        XP que pode ser adquirida com a missão: <br/>
-                        Responsavel: 
-                      </div>
-                    </div>
-                    <div class="card-footer">
-                      <span class="label label-warning">Não terminada na data certa: -20 xp!</span>
-                      <span class="label label-danger">Não terminada no tempo certo: -50xp!</span>
                     </div>
                   </div>
                 </clr-tab-content>
