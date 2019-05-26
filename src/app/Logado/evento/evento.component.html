@@ -15,12 +15,12 @@
                 <div class="card-block">
                   <div class="card-text">
                     <ol class="list">
-                      <li>Item 1</li>
-                      <li>Item 2</li>
-                      <li>Item 3</li>
-                      <li>Item 4</li>
-                      <li>Item 5</li>
-                      <li>Item 6</li>
+                      <li>{{evento?.primeiro?.name}}</li>
+                      <li>{{evento?.segundo?.name}}</li>
+                      <li>{{evento?.terceiro?.name}}</li>
+                      <li>{{evento?.quarto?.name}}</li>
+                      <li>{{evento?.quinto?.name}}</li>
+                      <li>{{evento?.sexto?.name}}</li>
                     </ol>
                   </div>
                 </div>
@@ -52,47 +52,38 @@
                 <div class="card-block">
                   <div class="card-text">
                     <ol class="list">
-                      <li>
-                        Jogador 1
-                        <ul class="list" style="list-style-type: none;">
-                          <li>Item 1</li>
-                        </ul>
-                      </li>
+                      <div *ngIf="premiacao">
+                        <div *ngFor="let premio of premiacao; let i = index">
+                          <li>
+                            {{premio?.jogador?.user?.first_name}} {{premio?.jogador?.user?.last_name}}
+                            <ul class="list" style="list-style-type: none;">
+                              <div *ngIf="i == 0">
+                                <li>{{premio?.evento?.primeiro?.name}}</li>
+                              </div>
 
-                      <li>
-                        Jogador 2
-                        <ul class="list" style="list-style-type: none;">
-                          <li>Item 2</li>
-                        </ul>
-                      </li>
+                              <div *ngIf="i == 1">
+                                <li>{{premio?.evento?.segundo?.name}}</li>
+                              </div>
 
-                      <li>
-                        Jogador 3
-                        <ul class="list" style="list-style-type: none;">
-                          <li>Item 3</li>
-                        </ul>
-                      </li>
+                              <div *ngIf="i == 2">
+                                <li>{{premio?.evento?.terceiro?.name}}</li>
+                              </div>
 
-                      <li>
-                        Jogador 4
-                        <ul class="list" style="list-style-type: none;">
-                          <li>Item 4</li>
-                        </ul>
-                      </li>
+                              <div *ngIf="i == 3">
+                                <li>{{premio?.evento?.quarto?.name}}</li>
+                              </div>
 
-                      <li>
-                        Jogador 5
-                        <ul class="list" style="list-style-type: none;">
-                          <li>Item 5</li>
-                        </ul>
-                      </li>
+                              <div *ngIf="i == 4">
+                                <li>{{premio?.evento?.quinto?.name}}</li>
+                              </div>
 
-                      <li>
-                        Jogador 6
-                        <ul class="list" style="list-style-type: none;">
-                          <li>Item 6</li>
-                        </ul>
-                      </li>
+                              <div *ngIf="i == 5">
+                                <li>{{premio?.evento?.sexto?.name}}</li>
+                              </div>
+                            </ul>
+                          </li>
+                        </div>
+                      </div>
                     </ol>
 
                   </div>
@@ -143,12 +134,13 @@
               </thead>
               <tbody>
                 <ng-container *ngFor="let evento of eventos">
-                  <ng-container *ngIf="evento.is_active">
+                  <ng-container *ngIf="!evento.is_active">
                     <tr>
                       <td>{{evento.name}}</td>
                       <td>{{evento.multiplicador_xp}}</td>
                       <td>{{evento.data_inicio}}</td>
-                      <td><button class="btn btn-info" (click)="premios = true">Premios</button></td>
+                      <td><button class="btn btn-info" (click)="premios = true; getEvento(evento.id)">Premios</button>
+                      </td>
                     </tr>
                   </ng-container>
                 </ng-container>
@@ -179,7 +171,8 @@
                       <td>{{evento.multiplicador_xp}}</td>
                       <td>{{evento.data_inicio}}</td>
                       <td>{{evento.data_final}}</td>
-                      <td><button class="btn btn-info" (click)="premiados = true">Premios</button></td>
+                      <td><button class="btn btn-info"
+                          (click)="premiados = true; getPremiacao(evento.id)">Premios</button></td>
                     </tr>
                   </ng-container>
                 </ng-container>
