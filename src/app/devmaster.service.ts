@@ -70,6 +70,18 @@ export class DevmasterService {
     });
   }
 
+  getEvento(token, id) {
+    return this.http.get(this.API_URL + '/evento/consultarEvento/' + id, {
+      headers: new HttpHeaders().set('authorization', 'Token ' + token)
+    });
+  }
+
+  getPremiacao(token, id) {
+    return this.http.get(this.API_URL + '/evento/PremiacaoEvento/' + id, {
+      headers: new HttpHeaders().set('authorization', 'Token ' + token)
+    });
+  }
+
   // -------------------- LOCAL STORAGE -------------------
 
   set(user, tokenn, tokengitlab) {
