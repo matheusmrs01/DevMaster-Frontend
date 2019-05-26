@@ -62,6 +62,13 @@ export class DevmasterService {
     });
   }
 
+  updateUsuarioXP_MF(xp, mf, id){
+    const xpJ = {"xp_total": xp, "m_realizadas": mf};
+    return this.http.patch(this.API_URL + '/jogador/' +id, xpJ, {
+      headers: new HttpHeaders().set('authorization', 'Token ' + JSON.parse(localStorage.getItem('Usuario Logado')).token)
+    });
+  }
+
   //  -----------------  EVENTO -----------------
 
   getEventos(token) {
@@ -85,6 +92,34 @@ export class DevmasterService {
   gerarPremiacao(token, id){
     return this.http.get(this.API_URL + '/evento/gerarPremiacao/' + id, {
       headers: new HttpHeaders().set('authorization', 'Token ' + token)
+    });
+  }
+
+  // -------------------- MISSÕES -------------------
+
+  addMissao(missao){
+    return this.http.post(this.API_URL + '/criarmissao', missao, {
+      headers: new HttpHeaders().set('authorization', 'Token ' + JSON.parse(localStorage.getItem('Usuario Logado')).token)
+    });
+  }
+
+  updateMissao(id, aux){
+    let missao;
+    if(aux){
+      missao = {"status": true, "nice_tempo": aux};
+    }
+    else{
+      missao = {"status": true, "nice_tempo": aux, "xp_missao": 40};
+
+    }
+    return this.http.patch(this.API_URL + '/missao/' + id, missao, {
+      headers: new HttpHeaders().set('authorization', 'Token ' + JSON.parse(localStorage.getItem('Usuario Logado')).token)
+    });
+  }
+
+  getMissoes(): Observable<any[]>{
+    return this.http.get<any[]>(this.API_URL + '/missao', {
+      headers: new HttpHeaders().set('authorization', 'Token ' + JSON.parse(localStorage.getItem('Usuario Logado')).token)
     });
   }
 
