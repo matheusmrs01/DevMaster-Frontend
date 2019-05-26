@@ -106,12 +106,7 @@
       <div class="clr-row">
         <div class="clr-col">
           <h3>Eventos</h3>
-        </div>
-
-
-        <div class="clr-col-1.5">
-          <button type="button" class="btn btn-primary">Pegar premiação!</button>
-        </div>
+        </div>        
       </div>
     </div>
   </div>
@@ -130,16 +125,18 @@
                   <th>XP</th>
                   <th>Data de Inicio</th>
                   <th>Premiação</th>
+                  <th>Gerar Premiação</th>
                 </tr>
               </thead>
               <tbody>
                 <ng-container *ngFor="let evento of eventos">
-                  <ng-container *ngIf="!evento.is_active">
+                  <ng-container *ngIf="evento.is_active || evento.is_finalized == false">
                     <tr>
                       <td>{{evento.name}}</td>
                       <td>{{evento.multiplicador_xp}}</td>
                       <td>{{evento.data_inicio}}</td>
                       <td><button class="btn btn-info" (click)="premios = true; getEvento(evento.id)">Premios</button>
+                      <td><button class="btn btn-primary" (click)="gerarPremiacao(evento.id)">Gerar!</button>
                       </td>
                     </tr>
                   </ng-container>
@@ -165,7 +162,7 @@
               </thead>
               <tbody>
                 <ng-container *ngFor="let evento of eventos">
-                  <ng-container *ngIf="!evento.is_active">
+                  <ng-container *ngIf="!evento.is_active && evento.is_finalized">
                     <tr>
                       <td>{{evento.name}}</td>
                       <td>{{evento.multiplicador_xp}}</td>
