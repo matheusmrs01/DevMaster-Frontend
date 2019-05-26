@@ -123,6 +123,20 @@ export class DevmasterService {
     });
   }
 
+  // -------------------- GRUPOS  -------------------
+
+  getGrupos(): Observable<any[]>{
+    return this.http.get<any[]>(this.API_URL + '/grupo/listarGrupos', {
+      headers: new HttpHeaders().set('authorization', 'Token ' + JSON.parse(localStorage.getItem('Usuario Logado')).token)
+    });
+  }
+
+  getGrupo(id): Observable<any[]>{
+    return this.http.get<any[]>(this.API_URL + '/grupo/consultarGrupo/' + id, {
+      headers: new HttpHeaders().set('authorization', 'Token ' + JSON.parse(localStorage.getItem('Usuario Logado')).token)
+    });
+  }
+
   // -------------------- LOCAL STORAGE -------------------
 
   set(user, tokenn, tokengitlab) {
