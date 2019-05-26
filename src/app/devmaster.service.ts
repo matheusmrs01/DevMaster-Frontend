@@ -32,6 +32,12 @@ export class DevmasterService {
     });
   }
 
+  getJogadores(): Observable<any>{
+    return this.http.get<any>(this.API_URL + '/jogador', {
+      headers: new HttpHeaders().set('authorization', 'Token ' + JSON.parse(localStorage.getItem('Usuario Logado')).token)
+    });
+  }
+
   save(username: string, senha: string, privatetoken: string, first_name: string, last_name: string, email: string, image: string) {
 
     const jogador = {
