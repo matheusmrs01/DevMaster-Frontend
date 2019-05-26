@@ -143,6 +143,36 @@ export class DevmasterService {
     });
   }
 
+  // -------------------- DESAFIOS -------------------
+
+  getDesafios(): Observable<any[]>{
+    return this.http.get<any[]>(this.API_URL + '/desafio/listarDesafios', {
+      headers: new HttpHeaders().set('authorization', 'Token ' + JSON.parse(localStorage.getItem('Usuario Logado')).token)
+    });
+  }
+
+  criarDesafio(name, desafiado, is_item, item=null){
+    console.log(item)
+    let desafio
+    if(is_item){
+      desafio = {
+        "name": name, 
+        "desafiado": desafiado, 
+        "is_item": is_item,
+        "item_desafiante": item
+      };
+    } else {
+      desafio = {
+        "name": name, 
+        "desafiado": desafiado, 
+        "is_item": is_item
+      };
+    }
+    return this.http.post(this.API_URL + '/desafio/criarDesafio', desafio, {
+      headers: new HttpHeaders().set('authorization', 'Token ' + JSON.parse(localStorage.getItem('Usuario Logado')).token)
+    });
+  }
+
   // -------------------- BURNDOWN -------------------
 
   getBurndowns(): Observable<any[]>{
