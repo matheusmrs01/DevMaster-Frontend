@@ -3,12 +3,12 @@
   <clr-modal [(clrModalOpen)]="basic" [clrModalSize]="'lg'" [clrModalStaticBackdrop]="false">
     <h3 class="modal-title">Crie seu desafio</h3>
     <div class="modal-body">
-      <form class="clr-form">
+      <form class="clr-form" #newDesafio="ngForm">
         <div class="clr-form-control">
           <label for="example" class="clr-control-label">Nome do Desafio:</label>
           <div class="clr-control-container clr-error">
             <div class="clr-input-wrapper">
-              <input type="text" id="example" class="clr-input">
+              <input type="text" id="desafio_name" name="desafio_name" [(ngModel)]="desafio_name" class="clr-input">
               <clr-icon class="clr-validate-icon" shape="exclamation-circle"></clr-icon>
             </div>
             <span class="clr-subtext">Nome já em uso</span>
@@ -17,10 +17,13 @@
           <label for="select-full" class="clr-control-label">Desafiado:</label>
           <div class="clr-control-container">
             <div class="clr-select-wrapper">
-              <select id="select-full" class="clr-select">
-                <option value="1">Desafiado 1</option>
-                <option value="2">Desafiado 2</option>
-                <option value="3">Desafiado 3</option>
+              <select id="desafio_desafiado" name="desafio_desafiado" [(ngModel)]="desafio_desafiado"
+                class="clr-select">
+                <ng-container *ngFor="let jogador of jogadores">
+                  <ng-container *ngIf="jogador.tipo == 'J' && jogador.id != jogador_logado">
+                    <option value="{{jogador.id}}">{{jogador.user.first_name}}</option>
+                  </ng-container>
+                </ng-container>
               </select>
               <clr-icon class="clr-validate-icon" shape="exclamation-circle"></clr-icon>
             </div>
@@ -30,10 +33,11 @@
           <label for="select-full" class="clr-control-label">Item:</label>
           <div class="clr-control-container">
             <div class="clr-select-wrapper">
-              <select id="select-full" class="clr-select">
-                <option value="1">Nada</option>
-                <option value="2">Item 1</option>
-                <option value="3">Item 2</option>
+              <select id="desafio_item" name="desafio_item" [(ngModel)]="desafio_item" class="clr-select">
+                <option value="0">-----</option>
+                <ng-container *ngFor="let item of itens_jogador">
+                  <option value="{{item.id}}">{{item.item.name}}</option>
+                </ng-container>
               </select>
               <clr-icon class="clr-validate-icon" shape="exclamation-circle"></clr-icon>
             </div>
@@ -46,7 +50,7 @@
     </div>
     <div class="modal-footer">
       <button type="button" class="btn btn-outline" (click)="basic = false">Cancel</button>
-      <button type="button" class="btn btn-primary" (click)="basic = false">Ok</button>
+      <button type="button" class="btn btn-primary" (click)="basic = false; criarDesafio()">Ok</button>
     </div>
   </clr-modal>
 
@@ -65,9 +69,9 @@
                 </div>
                 <div class="card-block">
                   <div class="card-text">
-                    Missão 1 <br/>
-                    Missão 2 <br/>
-                    Missão 3 
+                    Missão 1 <br />
+                    Missão 2 <br />
+                    Missão 3
                   </div>
                 </div>
               </div>
@@ -80,9 +84,9 @@
                 </div>
                 <div class="card-block">
                   <div class="card-text">
-                      Missão 1 <br/>
-                      Missão 2 <br/>
-                      Missão 3 
+                    Missão 1 <br />
+                    Missão 2 <br />
+                    Missão 3
                   </div>
                 </div>
               </div>
