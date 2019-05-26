@@ -2,7 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from "@angular/router";
 import { DevmasterService } from '../../devmaster.service';
 import { GitlabService } from '../../gitlab.service';
-import { Subscriber } from 'rxjs';
 
 @Component({
   selector: 'app-missoes-solo',
