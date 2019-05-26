@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { DevmasterService } from '../../devmaster.service';
-import { Items } from '@clr/angular/data/datagrid/providers/items';
 
 @Component({
   selector: 'app-dashboard',
@@ -11,6 +10,12 @@ export class DashboardComponent implements OnInit {
 
   jogador = null;
   jogador_itens = null;
+
+  users_xp: any = null;
+  users_m: any = null;
+  users_d: any = null;
+  users_e: any = null;
+
   public xp_total = 8;
   data = new Date('2018-10-27');
   data2 = new Date('2018-10-22');
@@ -23,6 +28,13 @@ export class DashboardComponent implements OnInit {
   ) { }
 
   ngOnInit() {
+
+    this.devMasterService.getJogadores().subscribe(Jogadores => {
+      this.users_xp = this.getUsersPorXP(Jogadores);
+      this.users_m = this.getUsersPorM(Jogadores);
+      this.users_d = this.getUsersPorD(Jogadores);
+      this.users_e = this.getUsersPorE(Jogadores);
+    });
 
     this.devMasterService.getUser(JSON.parse(localStorage.getItem('Usuario Logado')).token).subscribe(
       User => {
@@ -50,7 +62,67 @@ export class DashboardComponent implements OnInit {
         this.jogador_itens = 'Error no GetItens'
       }
     );
+  }
 
+  getUsersPorXP(jogadores) {
+    let usuarios = jogadores.slice();
+
+    for (let i = 0; i < usuarios.length; i++) {
+      for (let j = 0; j < usuarios.length - 1; j++) {
+        if (usuarios[j].xp_total < usuarios[j + 1].xp_total) {
+          let swap = usuarios[j];
+          usuarios[j] = usuarios[j + 1];
+          usuarios[j + 1] = swap;
+        }
+      }
+    }
+    console.log(usuarios)
+    return usuarios;
+  }
+
+  getUsersPorM(jogadores) {
+    let usuarios = jogadores.slice();
+    for (let i = 0; i < usuarios.length; i++) {
+      for (let j = 0; j < usuarios.length - 1; j++) {
+
+        if (usuarios[j].m_realizadas < usuarios[j + 1].m_realizadas) {
+          let swap = usuarios[j];
+          usuarios[j] = usuarios[j + 1];
+          usuarios[j + 1] = swap;
+        }
+      }
+    }
+    return usuarios;
+  }
+
+  getUsersPorD(jogadores) {
+    let usuarios = jogadores.slice();
+    for (let i = 0; i < usuarios.length; i++) {
+      for (let j = 0; j < usuarios.length - 1; j++) {
+
+        if (usuarios[j].desafios_v < usuarios[j + 1].desafios_v) {
+          let swap = usuarios[j];
+          usuarios[j] = usuarios[j + 1];
+          usuarios[j + 1] = swap;
+        }
+      }
+    }
+    return usuarios;
+  }
+
+  getUsersPorE(jogadores) {
+    let usuarios = jogadores.slice();
+    for (let i = 0; i < usuarios.length; i++) {
+      for (let j = 0; j < usuarios.length - 1; j++) {
+
+        if (usuarios[j].eventos_v < usuarios[j + 1].eventos_v) {
+          let swap = usuarios[j];
+          usuarios[j] = usuarios[j + 1];
+          usuarios[j + 1] = swap;
+        }
+      }
+    }
+    return usuarios;
   }
 
   getData() {

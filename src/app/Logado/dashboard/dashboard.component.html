@@ -107,14 +107,18 @@
       <div class="card">
         <div class="card-header">
           Ranking XP
+          <a role="tooltip" aria-haspopup="true" class="tooltip tooltip-md tooltip-bottom-right">
+            <clr-icon shape="info-circle" size="24"></clr-icon>
+            <span class="tooltip-content">Ranking por experiência.</span>
+          </a>
         </div>
         <div class="card-block">
           <ol class="list">
-            <li>Ullamco Laboris</li>
-            <li>Nisi Ut Aliquip</li>
-            <li>Consequat</li>
-            <li>Excepteur sint occaecat cupidatat non proident</li>
-            <li>Enim ad Minim</li>
+            <div *ngFor="let xp of users_xp">
+              <li>
+                {{xp.user.first_name}} {{xp.user.last_name}} - {{xp.xp_total}}
+              </li>
+            </div>
           </ol>
         </div>
       </div>
@@ -124,14 +128,18 @@
       <div class="card">
         <div class="card-header">
           Ranking Missões
+          <a role="tooltip" aria-haspopup="true" class="tooltip tooltip-md tooltip-bottom-right">
+            <clr-icon shape="info-circle" size="24"></clr-icon>
+            <span class="tooltip-content">Esse ranking mostra os usuarios que concluiram mais missões.</span>
+          </a>
         </div>
         <div class="card-block">
           <ol class="list">
-            <li>Ullamco Laboris</li>
-            <li>Nisi Ut Aliquip</li>
-            <li>Consequat</li>
-            <li>Excepteur sint occaecat cupidatat non proident</li>
-            <li>Enim ad Minim</li>
+            <div *ngFor="let xp of users_m">
+              <li>
+                {{xp.user.first_name}} {{xp.user.last_name}} - {{xp.m_realizadas}}
+              </li>
+            </div>
           </ol>
         </div>
       </div>
@@ -145,14 +153,18 @@
       <div class="card">
         <div class="card-header">
           Ranking Desafio
+          <a role="tooltip" aria-haspopup="true" class="tooltip tooltip-md tooltip-bottom-right">
+            <clr-icon shape="info-circle" size="24"></clr-icon>
+            <span class="tooltip-content">Esse rankingm mostra os usuario que ganharam mais desafios.</span>
+          </a>
         </div>
         <div class="card-block">
           <ol class="list">
-            <li>Ullamco Laboris</li>
-            <li>Nisi Ut Aliquip</li>
-            <li>Consequat</li>
-            <li>Excepteur sint occaecat cupidatat non proident</li>
-            <li>Enim ad Minim</li>
+            <div *ngFor="let xp of users_d">
+              <li>
+                {{xp.user.first_name}} {{xp.user.last_name}} - {{xp.desafios_v}}
+              </li>
+            </div>
           </ol>
         </div>
       </div>
@@ -162,14 +174,18 @@
       <div class="card">
         <div class="card-header">
           Ranking Evento
+          <a role="tooltip" aria-haspopup="true" class="tooltip tooltip-md tooltip-bottom-right">
+            <clr-icon shape="info-circle" size="24"></clr-icon>
+            <span class="tooltip-content">Esse rankingm mostra os usuario que ganharam mais eventos.</span>
+          </a>
         </div>
         <div class="card-block">
           <ol class="list">
-            <li>Ullamco Laboris</li>
-            <li>Nisi Ut Aliquip</li>
-            <li>Consequat</li>
-            <li>Excepteur sint occaecat cupidatat non proident</li>
-            <li>Enim ad Minim</li>
+            <div *ngFor="let xp of users_e">
+              <li>
+                {{xp.user.first_name}} {{xp.user.last_name}} - {{xp.eventos_v}}
+              </li>
+            </div>
           </ol>
         </div>
       </div>
