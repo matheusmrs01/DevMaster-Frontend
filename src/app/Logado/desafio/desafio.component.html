@@ -1,5 +1,5 @@
 <div class="main-container">
-
+  <!-- MODAL PARA CRIAR DESAFIO -->
   <clr-modal [(clrModalOpen)]="basic" [clrModalSize]="'lg'" [clrModalStaticBackdrop]="false">
     <h3 class="modal-title">Crie seu desafio</h3>
     <div class="modal-body">
@@ -21,7 +21,7 @@
                 class="clr-select">
                 <ng-container *ngFor="let jogador of jogadores">
                   <ng-container *ngIf="jogador.tipo == 'J' && jogador.id != jogador_logado">
-                    <option value="{{jogador.id}}">{{jogador.user.first_name}}</option>
+                    <option value="{{jogador.id}}">{{jogador.user.first_name}} {{jogador.user.last_name}}</option>
                   </ng-container>
                 </ng-container>
               </select>
@@ -53,7 +53,9 @@
       <button type="button" class="btn btn-primary" (click)="basic = false; criarDesafio()">Ok</button>
     </div>
   </clr-modal>
+  <!-- END MODAL PARA CRIAR DESAFIO -->
 
+  <!-- MODAL PARA MOSTRAR MISSOES DO DESAFIO -->
   <clr-modal [(clrModalOpen)]="missoes" [clrModalSize]="'lg'" [clrModalStaticBackdrop]="false">
     <h3 class="modal-title">Missões</h3>
     <div class="modal-body">
@@ -69,9 +71,15 @@
                 </div>
                 <div class="card-block">
                   <div class="card-text">
-                    Missão 1 <br />
-                    Missão 2 <br />
-                    Missão 3
+
+                    <ng-container *ngFor="let md of missoes_desafio">
+                      <ng-container *ngIf="md?.missao?.jogador?.id == md?.desafio?.desafiante?.id">
+                        {{md?.missao?.nome_missao}} - XP?: {{md?.missao?.xp_missao}} <a
+                          *ngIf="md?.missao?.jogador?.id == jogador_logado" (click)="removeMissao(md?.id)">
+                          Remover</a><br />
+                      </ng-container>
+                    </ng-container>
+
                   </div>
                 </div>
               </div>
@@ -84,9 +92,13 @@
                 </div>
                 <div class="card-block">
                   <div class="card-text">
-                    Missão 1 <br />
-                    Missão 2 <br />
-                    Missão 3
+                    <ng-container *ngFor="let md of missoes_desafio">
+                      <ng-container *ngIf="md?.missao?.jogador?.id == md?.desafio?.desafiado?.id">
+                        {{md?.missao?.nome_missao}} - XP?: {{md?.missao?.xp_missao}} <a
+                          *ngIf="md?.missao?.jogador?.id == jogador_logado" (click)="removeMissao(md?.id)">
+                          Remover</a><br />
+                      </ng-container>
+                    </ng-container>
                   </div>
                 </div>
               </div>
@@ -101,7 +113,122 @@
       <button type="button" class="btn btn-primary" (click)="missoes = false">Ok</button>
     </div>
   </clr-modal>
+  <!-- END MODAL PARA MOSTRAR MISSOES DO DESAFIO -->
 
+  <!-- MODAL PARA MOSTRAR MISSOES DO DESAFIOE -->
+  <clr-modal [(clrModalOpen)]="missoesE" [clrModalSize]="'lg'" [clrModalStaticBackdrop]="false">
+    <h3 class="modal-title">Missões</h3>
+    <div class="modal-body">
+      <div class="clr-row clr-justify-content-center">
+
+        <div class="clr-col-12 clr-align-self-center">
+
+          <div class="clr-row clr-justify-content-center">
+            <div class="clr-col-sm-12 clr-col-md-6">
+              <div class="card">
+                <div class="card-header">
+                  Missões do Desafiante
+                </div>
+                <div class="card-block">
+                  <div class="card-text">
+
+                    <ng-container *ngFor="let md of missoes_desafio">
+                      <ng-container *ngIf="md?.missao?.jogador?.id == md?.desafio?.desafiante?.id">
+                        {{md?.missao?.nome_missao}} - XP?: {{md?.missao?.xp_missao}}<br />
+                      </ng-container>
+                    </ng-container>
+
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="clr-col-sm-12 clr-col-md-6">
+              <div class="card">
+                <div class="card-header">
+                  Missões do Desafiado
+                </div>
+                <div class="card-block">
+                  <div class="card-text">
+                    <ng-container *ngFor="let md of missoes_desafio">
+                      <ng-container *ngIf="md?.missao?.jogador?.id == md?.desafio?.desafiado?.id">
+                        {{md?.missao?.nome_missao}} - XP?: {{md?.missao?.xp_missao}}<br />
+                      </ng-container>
+                    </ng-container>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <div class="modal-footer">
+      <button type="button" class="btn btn-primary" (click)="missoesE = false">Ok</button>
+    </div>
+  </clr-modal>
+  <!-- END MODAL PARA MOSTRAR MISSOES DO DESAFIOE -->
+
+  <!-- MODAL PARA EDITAR ITEM DO DESAFIO -->
+  <clr-modal [(clrModalOpen)]="editar_item" [clrModalSize]="'lg'" [clrModalStaticBackdrop]="false">
+    <h3 class="modal-title">Escolha o item:</h3>
+    <div class="modal-body">
+
+      <form class="clr-form" #updateItem="ngForm">
+        <div class="clr-form-control">
+          <label for="select-full" class="clr-control-label">Item:</label>
+          <div class="clr-control-container">
+            <div class="clr-select-wrapper">
+              <select id="desafio_item" name="desafio_item" [(ngModel)]="desafio_item" class="clr-select">
+                <option value="0">-----</option>
+                <ng-container *ngFor="let item of itens_jogador">
+                  <option value="{{item.id}}">{{item.item.name}}</option>
+                </ng-container>
+              </select>
+              <clr-icon class="clr-validate-icon" shape="exclamation-circle"></clr-icon>
+            </div>
+          </div>
+        </div>
+      </form>
+
+    </div>
+    <div class="modal-footer">
+      <button type="button" class="btn btn-primary" (click)="editar_item = false; editarItem()">Ok</button>
+    </div>
+  </clr-modal>
+  <!-- END MODAL PARA EDITAR ITEM DO DESAFIO -->
+
+  <!-- MODAL PARA ADICIONAR MISSÃO DO DESAFIO -->
+  <clr-modal [(clrModalOpen)]="addMissao" [clrModalSize]="'lg'" [clrModalStaticBackdrop]="false">
+    <h3 class="modal-title">Escolha o item:</h3>
+    <div class="modal-body">
+
+      <form class="clr-form" #updateItem="ngForm">
+        <div class="clr-form-control">
+          <label for="select-full" class="clr-control-label">Item:</label>
+          <div class="clr-control-container">
+            <div class="clr-select-wrapper">
+              <select id="missaoAdd" name="missaoAdd" [(ngModel)]="missaoAdd" class="clr-select">
+                <ng-container *ngFor="let m of missoesfinded">
+                  <ng-container *ngIf="jogador_logado == m?.jogador?.id && m.status == false">
+                    <option value="{{m.id}}">{{m.nome_missao}}</option>
+                  </ng-container>
+                </ng-container>
+              </select>
+              <clr-icon class="clr-validate-icon" shape="exclamation-circle"></clr-icon>
+            </div>
+          </div>
+        </div>
+      </form>
+
+    </div>
+    <div class="modal-footer">
+      <button type="button" class="btn btn-primary" (click)="addMissao = false; addMissaoDesafio()">Ok</button>
+    </div>
+  </clr-modal>
+  <!-- END MODAL PARA ADD MISSÃO DO DESAFIO -->
 
   <div class="clr-row clr-justify-content-center">
     <div class="clr-col-7 clr-align-self-center">
@@ -141,42 +268,22 @@
                       </tr>
                     </thead>
                     <tbody>
-                      <tr>
-                        <td>Desafio 1 Proposta</td>
-                        <td>Desafiante 1 Proposta</td>
-                        <td>Item 1 Desafiante</td>
-                        <td>
-                          <button class="btn btn-success">Aceitar</button>
-                          <button class="btn btn-danger">Recusar</button>
-                        </td>
-                      </tr>
-                      <tr>
-                        <td>Desafio 2 Proposta</td>
-                        <td>Desafiante 2 Proposta</td>
-                        <td>Item 2 Desafiante</td>
-                        <td>
-                          <button class="btn btn-success">Aceitar</button>
-                          <button class="btn btn-danger">Recusar</button>
-                        </td>
-                      </tr>
-                      <tr>
-                        <td>Desafio 3 Proposta</td>
-                        <td>Desafiante 3 Proposta</td>
-                        <td>Item 3 Desafiante</td>
-                        <td>
-                          <button class="btn btn-success">Aceitar</button>
-                          <button class="btn btn-danger">Recusar</button>
-                        </td>
-                      </tr>
-                      <tr>
-                        <td>Desafio 4 Proposta</td>
-                        <td>Desafiante 4 Proposta</td>
-                        <td>Item 4 Desafiante</td>
-                        <td>
-                          <button class="btn btn-success">Aceitar</button>
-                          <button class="btn btn-danger">Recusar</button>
-                        </td>
-                      </tr>
+
+                      <ng-container *ngFor="let desafio of desafios">
+                        <ng-container *ngIf="desafio.status == 'P' && desafio.desafiado.id == jogador_logado">
+                          <tr>
+                            <td>{{desafio.nome}}</td>
+                            <td>{{desafio.desafiante.user.first_name}} {{desafio.desafiante.user.last_name}}</td>
+                            <td>{{desafio.item_desafiante.item.name}}</td>
+                            <td>
+                              <button class="btn btn-success"
+                                (click)="editar_item = true; desafioFinded=desafio.id">Aceitar</button>
+                              <button class="btn btn-danger">Recusar</button>
+                            </td>
+                          </tr>
+                        </ng-container>
+                      </ng-container>
+
                     </tbody>
                   </table>
                 </clr-tab-content>
@@ -194,42 +301,22 @@
                       </tr>
                     </thead>
                     <tbody>
-                      <tr>
-                        <td>Desafio 1 Proposta</td>
-                        <td>Desafiado 1 Proposta</td>
-                        <td>Item 1 Desafiado</td>
-                        <td>
-                          <button class="btn btn-success">Editar</button>
-                          <button class="btn btn-danger">Excluir</button>
-                        </td>
-                      </tr>
-                      <tr>
-                        <td>Desafio 2 Proposta</td>
-                        <td>Desafiado 2 Proposta</td>
-                        <td>Item 2 Desafiado</td>
-                        <td>
-                          <button class="btn btn-success">Editar</button>
-                          <button class="btn btn-danger">Excluir</button>
-                        </td>
-                      </tr>
-                      <tr>
-                        <td>Desafio 3 Proposta</td>
-                        <td>Desafiado 3 Proposta</td>
-                        <td>Item 3 Desafiado</td>
-                        <td>
-                          <button class="btn btn-success">Editar</button>
-                          <button class="btn btn-danger">Excluir</button>
-                        </td>
-                      </tr>
-                      <tr>
-                        <td>Desafio 4 Proposta</td>
-                        <td>Desafiado 4 Proposta</td>
-                        <td>Item 4 Desafiado</td>
-                        <td>
-                          <button class="btn btn-success">Editar</button>
-                          <button class="btn btn-danger">Excluir</button>
-                        </td>
-                      </tr>
+
+                      <ng-container *ngFor="let desafio of desafios">
+                        <ng-container *ngIf="desafio.status == 'P' && desafio.desafiante.id == jogador_logado">
+                          <tr>
+                            <td>{{desafio.nome}}</td>
+                            <td>{{desafio.desafiado.user.first_name}} {{desafio.desafiado.user.last_name}}</td>
+                            <td>{{desafio?.item_desafiado?.item.name}}</td>
+                            <td>
+                              <button class="btn btn-success"
+                                (click)="editar_item = true;desafioFinded=desafio.id">Editar</button>
+                              <button class="btn btn-danger">Excluir</button>
+                            </td>
+                          </tr>
+                        </ng-container>
+                      </ng-container>
+
                     </tbody>
                   </table>
                 </clr-tab-content>
@@ -259,54 +346,28 @@
                       </tr>
                     </thead>
                     <tbody>
-                      <tr>
-                        <td>Desafio 1 Aposta</td>
-                        <td>Desafiante 1 Aposta</td>
-                        <td>Item 1 Desafiante</td>
-                        <td>
-                          <button class="btn btn-info" (click)="missoes = true">Missões</button>
-                        </td>
-                        <td>
-                          <button class="btn btn-success">Add Missão</button>
-                          <button class="btn btn-primary">Next!</button>
-                        </td>
-                      </tr>
-                      <tr>
-                        <td>Desafio 2 Aposta</td>
-                        <td>Desafiante 2 Aposta</td>
-                        <td>Item 2 Desafiante</td>
-                        <td>
-                          <button class="btn btn-info" (click)="missoes = true">Missões</button>
-                        </td>
-                        <td>
-                          <button class="btn btn-success">Add Missão</button>
-                          <button class="btn btn-primary">Next!</button>
-                        </td>
-                      </tr>
-                      <tr>
-                        <td>Desafio 3 Aposta</td>
-                        <td>Desafiante 3 Aposta</td>
-                        <td>Item 3 Desafiante</td>
-                        <td>
-                          <button class="btn btn-info" (click)="missoes = true">Missões</button>
-                        </td>
-                        <td>
-                          <button class="btn btn-success">Add Missão</button>
-                          <button class="btn btn-primary">Next!</button>
-                        </td>
-                      </tr>
-                      <tr>
-                        <td>Desafio 4 Aposta</td>
-                        <td>Desafiante 4 Aposta</td>
-                        <td>Item 4 Desafiante</td>
-                        <td>
-                          <button class="btn btn-info" (click)="missoes = true">Missões</button>
-                        </td>
-                        <td>
-                          <button class="btn btn-success">Add Missão</button>
-                          <button class="btn btn-primary">Next!</button>
-                        </td>
-                      </tr>
+
+                      <ng-container *ngFor="let desafio of desafios">
+                        <ng-container *ngIf="desafio.status == 'A' && desafio.desafiado.id == jogador_logado">
+                          <tr>
+                            <td>{{desafio.nome}}</td>
+                            <td>{{desafio.desafiante.user.first_name}} {{desafio.desafiante.user.last_name}}</td>
+                            <td>{{desafio.item_desafiante.item.name}}</td>
+                            <td>
+                              <button class="btn btn-info"
+                                (click)="missoes = true; getMissoesDesafio(desafio.id)">Missões</button>
+                            </td>
+                            <td>
+                              <button class="btn btn-success"
+                                (click)="addMissao = true;desafioFinded=desafio.id;getMissoes()">Add
+                                Missão</button>
+                              <button class="btn btn-danger"
+                                (click)="desafioFinded=desafio.id;mudarStatusDesafio('E')">Next!</button>
+                            </td>
+                          </tr>
+                        </ng-container>
+                      </ng-container>
+
                     </tbody>
                   </table>
                 </clr-tab-content>
@@ -325,54 +386,28 @@
                       </tr>
                     </thead>
                     <tbody>
-                      <tr>
-                        <td>Desafio 1 Aposta</td>
-                        <td>Desafiado 1 Aposta</td>
-                        <td>Item 1 Desafiado</td>
-                        <td>
-                          <button class="btn btn-info" (click)="missoes = true">Missões</button>
-                        </td>
-                        <td>
-                          <button class="btn btn-success">Add Missão</button>
-                          <button class="btn btn-primary">Next!</button>
-                        </td>
-                      </tr>
-                      <tr>
-                        <td>Desafio 2 Aposta</td>
-                        <td>Desafiado 2 Aposta</td>
-                        <td>Item 2 Desafiado</td>
-                        <td>
-                          <button class="btn btn-info" (click)="missoes = true">Missões</button>
-                        </td>
-                        <td>
-                          <button class="btn btn-success">Add Missão</button>
-                          <button class="btn btn-primary">Next!</button>
-                        </td>
-                      </tr>
-                      <tr>
-                        <td>Desafio 3 Aposta</td>
-                        <td>Desafiado 3 Aposta</td>
-                        <td>Item 3 Desafiado</td>
-                        <td>
-                          <button class="btn btn-info" (click)="missoes = true">Missões</button>
-                        </td>
-                        <td>
-                          <button class="btn btn-success">Add Missão</button>
-                          <button class="btn btn-primary">Next!</button>
-                        </td>
-                      </tr>
-                      <tr>
-                        <td>Desafio 4 Aposta</td>
-                        <td>Desafiado 4 Aposta</td>
-                        <td>Item 4 Desafiado</td>
-                        <td>
-                          <button class="btn btn-info" (click)="missoes = true">Missões</button>
-                        </td>
-                        <td>
-                          <button class="btn btn-success">Add Missão</button>
-                          <button class="btn btn-primary">Next!</button>
-                        </td>
-                      </tr>
+
+                      <ng-container *ngFor="let desafio of desafios">
+                        <ng-container *ngIf="desafio.status == 'A' && desafio.desafiante.id == jogador_logado">
+                          <tr>
+                            <td>{{desafio.nome}}</td>
+                            <td>{{desafio.desafiado.user.first_name}} {{desafio.desafiado.user.last_name}}</td>
+                            <td>{{desafio.item_desafiado.item.name}}</td>
+                            <td>
+                              <button class="btn btn-info"
+                                (click)="missoes = true; getMissoesDesafio(desafio.id)">Missões</button>
+                            </td>
+                            <td>
+                              <button class="btn btn-success"
+                                (click)="addMissao = true; desafioFinded=desafio.id;getMissoes()">Add
+                                Missão</button>
+                              <button class="btn btn-danger"
+                                (click)="desafioFinded=desafio.id;mudarStatusDesafio('E')">Next!</button>
+                            </td>
+                          </tr>
+                        </ng-container>
+                      </ng-container>
+
                     </tbody>
                   </table>
                 </clr-tab-content>
@@ -402,50 +437,25 @@
                       </tr>
                     </thead>
                     <tbody>
-                      <tr>
-                        <td>Desafio 1 Andamento</td>
-                        <td>Desafiante 1 Andamento</td>
-                        <td>Item 1 Desafiante</td>
-                        <td>
-                          <button class="btn btn-info" (click)="missoes = true">Missões</button>
-                        </td>
-                        <td>
-                          <button class="btn btn-danger">Concluir!</button>
-                        </td>
-                      </tr>
-                      <tr>
-                        <td>Desafio 2 Andamento</td>
-                        <td>Desafiante 2 Andamento</td>
-                        <td>Item 2 Desafiante</td>
-                        <td>
-                          <button class="btn btn-info" (click)="missoes = true">Missões</button>
-                        </td>
-                        <td>
-                          <button class="btn btn-danger">Concluir!</button>
-                        </td>
-                      </tr>
-                      <tr>
-                        <td>Desafio 3 Andamento</td>
-                        <td>Desafiante 3 Andamento</td>
-                        <td>Item 3 Desafiante</td>
-                        <td>
-                          <button class="btn btn-info" (click)="missoes = true">Missões</button>
-                        </td>
-                        <td>
-                          <button class="btn btn-danger">Concluir!</button>
-                        </td>
-                      </tr>
-                      <tr>
-                        <td>Desafio 4 Andamento</td>
-                        <td>Desafiante 4 Andamento</td>
-                        <td>Item 4 Desafiante</td>
-                        <td>
-                          <button class="btn btn-info" (click)="missoes = true">Missões</button>
-                        </td>
-                        <td>
-                          <button class="btn btn-danger">Concluir!</button>
-                        </td>
-                      </tr>
+
+                      <ng-container *ngFor="let desafio of desafios">
+                        <ng-container *ngIf="desafio.status == 'E' && desafio.desafiado.id == jogador_logado">
+                          <tr>
+                            <td>{{desafio.nome}}</td>
+                            <td>{{desafio.desafiante.user.first_name}} {{desafio.desafiante.user.last_name}}</td>
+                            <td>{{desafio.item_desafiante.item.name}}</td>
+                            <td>
+                              <button class="btn btn-info"
+                                (click)="missoesE = true; getMissoesDesafio(desafio.id)">Missões</button>
+                            </td>
+                            <td>
+                              <button class="btn btn-danger"
+                                (click)="desafioFinded=desafio.id;mudarStatusDesafio('C')">Concluir!</button>
+                            </td>
+                          </tr>
+                        </ng-container>
+                      </ng-container>
+
                     </tbody>
                   </table>
                 </clr-tab-content>
@@ -464,50 +474,25 @@
                       </tr>
                     </thead>
                     <tbody>
-                      <tr>
-                        <td>Desafio 1 Andamento</td>
-                        <td>Desafiado 1 Andamento</td>
-                        <td>Item 1 Desafiado</td>
-                        <td>
-                          <button class="btn btn-info" (click)="missoes = true">Missões</button>
-                        </td>
-                        <td>
-                          <button class="btn btn-danger">Concluir!</button>
-                        </td>
-                      </tr>
-                      <tr>
-                        <td>Desafio 2 Andamento</td>
-                        <td>Desafiado 2 Andamento</td>
-                        <td>Item 2 Desafiado</td>
-                        <td>
-                          <button class="btn btn-info" (click)="missoes = true">Missões</button>
-                        </td>
-                        <td>
-                          <button class="btn btn-danger">Concluir!</button>
-                        </td>
-                      </tr>
-                      <tr>
-                        <td>Desafio 3 Andamento</td>
-                        <td>Desafiado 3 Andamento</td>
-                        <td>Item 3 Desafiado</td>
-                        <td>
-                          <button class="btn btn-info" (click)="missoes = true">Missões</button>
-                        </td>
-                        <td>
-                          <button class="btn btn-danger">Concluir!</button>
-                        </td>
-                      </tr>
-                      <tr>
-                        <td>Desafio 4 Andamento</td>
-                        <td>Desafiado 4 Andamento</td>
-                        <td>Item 4 Desafiado</td>
-                        <td>
-                          <button class="btn btn-info" (click)="missoes = true">Missões</button>
-                        </td>
-                        <td>
-                          <button class="btn btn-danger">Concluir!</button>
-                        </td>
-                      </tr>
+
+                      <ng-container *ngFor="let desafio of desafios">
+                        <ng-container *ngIf="desafio.status == 'E' && desafio.desafiante.id == jogador_logado">
+                          <tr>
+                            <td>{{desafio.nome}}</td>
+                            <td>{{desafio.desafiado.user.first_name}} {{desafio.desafiado.user.last_name}}</td>
+                            <td>{{desafio.item_desafiado.item.name}}</td>
+                            <td>
+                              <button class="btn btn-info"
+                                (click)="missoesE = true; getMissoesDesafio(desafio.id)">Missões</button>
+                            </td>
+                            <td>
+                              <button class="btn btn-danger"
+                                (click)="desafioFinded=desafio.id;mudarStatusDesafio('C')">Concluir!</button>
+                            </td>
+                          </tr>
+                        </ng-container>
+                      </ng-container>
+
                     </tbody>
                   </table>
                 </clr-tab-content>
@@ -537,29 +522,32 @@
                       </tr>
                     </thead>
                     <tbody>
-                      <tr>
-                        <td>Desafio 1 Concluido</td>
-                        <td>Desafiante 1 Concluido</td>
-                        <td>Item 1 Desafiante</td>
-                        <td>
-                          <button class="btn btn-info" (click)="missoes = true">Missões</button>
-                        </td>
-                        <td>
-                          Ganhou!!
-                        </td>
-                      </tr>
 
-                      <tr>
-                        <td>Desafio 2 Concluido</td>
-                        <td>Desafiante 2 Concluido</td>
-                        <td>Item 2 Desafiante</td>
-                        <td>
-                          <button class="btn btn-info" (click)="missoes = true">Missões</button>
-                        </td>
-                        <td>
-                          Perdeu!!
-                        </td>
-                      </tr>
+                      <ng-container *ngFor="let desafio of desafios">
+                        <ng-container *ngIf="desafio.status == 'C' && desafio.desafiado.id == jogador_logado">
+                          <tr>
+                            <td>{{desafio?.nome}}</td>
+                            <td>{{desafio?.desafiante?.user?.first_name}} {{desafio?.desafiante?.user?.last_name}}</td>
+                            <td>{{desafio?.item_desafiante?.item.name}}</td>
+                            <td>
+                              <button class="btn btn-info"
+                                (click)="missoesE = true; getMissoesDesafio(desafio.id)">Missões</button>
+                            </td>
+                            <td>
+                              <ng-container *ngIf="desafio?.vencedor == 'DO'">
+                                Ganhou!
+                              </ng-container>
+                              <ng-container *ngIf="desafio?.vencedor == 'DE'">
+                                Perdeu!
+                              </ng-container>
+                              <ng-container *ngIf="desafio?.vencedor == 'EM'">
+                                Empante!
+                              </ng-container>
+                            </td>
+                          </tr>
+                        </ng-container>
+                      </ng-container>
+
                     </tbody>
                   </table>
                 </clr-tab-content>
@@ -579,29 +567,32 @@
                       </tr>
                     </thead>
                     <tbody>
-                      <tr>
-                        <td>Desafio 3 Concluido</td>
-                        <td>Desafiado 3 Concluido</td>
-                        <td>Item 3 Desafiado</td>
-                        <td>
-                          <button class="btn btn-info" (click)="missoes = true">Missões</button>
-                        </td>
-                        <td>
-                          Perdeu!!
-                        </td>
-                      </tr>
 
-                      <tr>
-                        <td>Desafio 4 Concluido</td>
-                        <td>Desafiado 4 Concluido</td>
-                        <td>Item 4 Desafiado</td>
-                        <td>
-                          <button class="btn btn-info" (click)="missoes = true">Missões</button>
-                        </td>
-                        <td>
-                          Ganhou!!
-                        </td>
-                      </tr>
+                      <ng-container *ngFor="let desafio of desafios">
+                        <ng-container *ngIf="desafio.status == 'C' && desafio.desafiante.id == jogador_logado">
+                          <tr>
+                            <td>{{desafio?.nome}}</td>
+                            <td>{{desafio?.desafiado?.user?.first_name}} {{desafio?.desafiado?.user?.last_name}}</td>
+                            <td>{{desafio?.item_desafiado?.item.name}}</td>
+                            <td>
+                              <button class="btn btn-info"
+                                (click)="missoesE = true; getMissoesDesafio(desafio.id)">Missões</button>
+                            </td>
+                            <td>
+                              <ng-container *ngIf="desafio?.vencedor == 'DO'">
+                                Perdeu!
+                              </ng-container>
+                              <ng-container *ngIf="desafio?.vencedor == 'DE'">
+                                Ganhou!
+                              </ng-container>
+                              <ng-container *ngIf="desafio?.vencedor == 'EM'">
+                                Empante!
+                              </ng-container>
+                            </td>
+                          </tr>
+                        </ng-container>
+                      </ng-container>
+
                     </tbody>
                   </table>
                 </clr-tab-content>
@@ -624,35 +615,50 @@
                       </tr>
                     </thead>
                     <tbody>
-                      <tr>
-                        <td>Desafio 1 Concluido</td>
-                        <td>Desafiado 1 Concluido</td>
-                        <td>Item 1 Desafiado</td>
-                        <td>
-                          <button class="btn btn-info" (click)="missoes = true">Missões</button>
-                        </td>
-                        <td>
-                          Desafiante
-                        </td>
-                        <td>
-                          Ganhou!!
-                        </td>
-                      </tr>
 
-                      <tr>
-                        <td>Desafio 4 Concluido</td>
-                        <td>Desafiante 4 Concluido</td>
-                        <td>Item 4 Desafiante</td>
-                        <td>
-                          <button class="btn btn-info" (click)="missoes = true">Missões</button>
-                        </td>
-                        <td>
-                          Desafiado
-                        </td>
-                        <td>
-                          Ganhou!!
-                        </td>
-                      </tr>
+                      <ng-container *ngFor="let desafio of desafios">
+                        <ng-container *ngIf="desafio?.status == 'C'">
+
+                          <ng-container *ngIf="desafio?.desafiante?.id == jogador_logado && desafio?.vencedor== 'DE'">
+                            <tr>
+                              <td>{{desafio?.nome}}</td>
+                              <td>{{desafio?.desafiado?.user?.first_name}} {{desafio?.desafiado?.user?.last_name}}</td>
+                              <td>{{desafio?.item_desafiado?.item.name}}</td>
+                              <td>
+                                <button class="btn btn-info"
+                                  (click)="missoesE = true; getMissoesDesafio(desafio.id)">Missões</button>
+                              </td>
+                              <td>
+                                Desafiante
+                              </td>
+                              <td>
+                                Ganhou!
+                              </td>
+                            </tr>
+                          </ng-container>
+
+                          <ng-container *ngIf="desafio?.desafiado?.id == jogador_logado && desafio?.vencedor== 'DO'">
+                            <tr>
+                              <td>{{desafio?.nome}}</td>
+                              <td>{{desafio?.desafiante?.user?.first_name}} {{desafio?.desafiante?.user?.last_name}}
+                              </td>
+                              <td>{{desafio?.item_desafiante?.item.name}}</td>
+                              <td>
+                                <button class="btn btn-info"
+                                  (click)="missoesE = true; getMissoesDesafio(desafio.id)">Missões</button>
+                              </td>
+                              <td>
+                                Desafiado
+                              </td>
+                              <td>
+                                Ganhou!
+                              </td>
+                            </tr>
+                          </ng-container>
+
+                        </ng-container>
+                      </ng-container>
+
                     </tbody>
                   </table>
                 </clr-tab-content>
@@ -675,35 +681,50 @@
                       </tr>
                     </thead>
                     <tbody>
-                      <tr>
-                        <td>Desafio 2 Concluido</td>
-                        <td>Desafiado 2 Concluido</td>
-                        <td>Item 2 Desafiado</td>
-                        <td>
-                          <button class="btn btn-info" (click)="missoes = true">Missões</button>
-                        </td>
-                        <td>
-                          Desafiado
-                        </td>
-                        <td>
-                          Perdeu!!
-                        </td>
-                      </tr>
 
-                      <tr>
-                        <td>Desafio 3 Concluido</td>
-                        <td>Desafiante 3 Concluido</td>
-                        <td>Item 3 Desafiante</td>
-                        <td>
-                          <button class="btn btn-info" (click)="missoes = true">Missões</button>
-                        </td>
-                        <td>
-                          Desafiante
-                        </td>
-                        <td>
-                          Perdeu!!
-                        </td>
-                      </tr>
+                      <ng-container *ngFor="let desafio of desafios">
+                        <ng-container *ngIf="desafio?.status == 'C'">
+
+                          <ng-container *ngIf="desafio?.desafiante?.id == jogador_logado && desafio?.vencedor== 'DO'">
+                            <tr>
+                              <td>{{desafio?.nome}}</td>
+                              <td>{{desafio?.desafiado?.user?.first_name}} {{desafio?.desafiado?.user?.last_name}}</td>
+                              <td>{{desafio?.item_desafiado?.item.name}}</td>
+                              <td>
+                                <button class="btn btn-info"
+                                  (click)="missoesE = true; getMissoesDesafio(desafio.id)">Missões</button>
+                              </td>
+                              <td>
+                                Desafiante
+                              </td>
+                              <td>
+                                Perdeu!
+                              </td>
+                            </tr>
+                          </ng-container>
+
+                          <ng-container *ngIf="desafio?.desafiado?.id == jogador_logado && desafio?.vencedor== 'DE'">
+                            <tr>
+                              <td>{{desafio?.nome}}</td>
+                              <td>{{desafio?.desafiante?.user?.first_name}} {{desafio?.desafiante?.user?.last_name}}
+                              </td>
+                              <td>{{desafio?.item_desafiante?.item.name}}</td>
+                              <td>
+                                <button class="btn btn-info"
+                                  (click)="missoesE = true; getMissoesDesafio(desafio.id)">Missões</button>
+                              </td>
+                              <td>
+                                Desafiado
+                              </td>
+                              <td>
+                                Perdeu!
+                              </td>
+                            </tr>
+                          </ng-container>
+
+                        </ng-container>
+                      </ng-container>
+
                     </tbody>
                   </table>
                 </clr-tab-content>
