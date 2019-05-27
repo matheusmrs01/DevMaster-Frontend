@@ -173,6 +173,39 @@ export class DevmasterService {
     });
   }
 
+  updateItem(id, item){
+    const body = {"id": id, "item": item}
+    return this.http.put<any[]>(this.API_URL + '/desafio/trocarItemDesafio', body, {
+      headers: new HttpHeaders().set('authorization', 'Token ' + JSON.parse(localStorage.getItem('Usuario Logado')).token)
+    });
+  }
+
+  mudarStatusDesafio(id, status){
+    const body = {"id": id, "status": status}
+    return this.http.put<any[]>(this.API_URL + '/desafio/mudarStatus', body, {
+      headers: new HttpHeaders().set('authorization', 'Token ' + JSON.parse(localStorage.getItem('Usuario Logado')).token)
+    });
+  }
+
+  getMissoesDesafio(id){
+    return this.http.get<any[]>(this.API_URL + '/missaodesafio/consultarMissoesDesafio/' + id, {
+      headers: new HttpHeaders().set('authorization', 'Token ' + JSON.parse(localStorage.getItem('Usuario Logado')).token)
+    });
+  }
+
+  addMissoesDesafio(desafio, missao){
+    const body = {"id_desafio": desafio, "id_missao": missao}
+    return this.http.post<any[]>(this.API_URL + '/missaodesafio/addMissoesDesafio', body, {
+      headers: new HttpHeaders().set('authorization', 'Token ' + JSON.parse(localStorage.getItem('Usuario Logado')).token)
+    });
+  }
+
+  removeMissaoDesafio(id){
+    return this.http.delete<any[]>(this.API_URL + '/missaodesafio/deleteMissoesDesafio/' + id, {
+      headers: new HttpHeaders().set('authorization', 'Token ' + JSON.parse(localStorage.getItem('Usuario Logado')).token)
+    });
+  }
+
   // -------------------- BURNDOWN -------------------
 
   getBurndowns(): Observable<any[]>{
