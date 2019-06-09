@@ -61,7 +61,7 @@ export class BurndownComponent implements OnInit {
       this.data = []
       let aux = 0
       if (burndown.quantidade_missao_falta != null) {
-         this.data.push(['Inicial', burndown.quantidade_missao + burndown.quantidade_missao_falta])
+         this.data.push(['Inicial', burndown.quantidade_missao])
          this.data.push(['Dia 0', burndown.quantidade_missao + burndown.quantidade_missao_falta])
 
          if (burndown.quantidade_queimada_dia1 != null) {
@@ -79,21 +79,21 @@ export class BurndownComponent implements OnInit {
          }
 
          if (burndown.quantidade_queimada_dia3 != null) {
-            aux = aux - burndown.quantidade_queimada_dia1
+            aux = aux - burndown.quantidade_queimada_dia2
             this.data.push(['Dia 3', aux - burndown.quantidade_queimada_dia3])
          } else {
             this.data.push(['Dia 3', null])
          }
 
          if (burndown.quantidade_queimada_dia4 != null) {
-            aux = aux - burndown.quantidade_queimada_dia1
+            aux = aux - burndown.quantidade_queimada_dia3
             this.data.push(['Dia 4', aux - burndown.quantidade_queimada_dia4])
          } else {
             this.data.push(['Dia 4', null])
          }
 
          if (burndown.quantidade_queimada_dia5 != null) {
-            aux = aux - burndown.quantidade_queimada_dia1
+            aux = aux - burndown.quantidade_queimada_dia4
             this.data.push(['Dia 5', aux - burndown.quantidade_queimada_dia5])
          } else {
             this.data.push(['Dia 5', null])
@@ -115,21 +115,21 @@ export class BurndownComponent implements OnInit {
          }
 
          if (burndown.quantidade_queimada_dia3 != null) {
-            aux = aux - burndown.quantidade_queimada_dia1
+            aux = aux - burndown.quantidade_queimada_dia2
             this.data.push(['Dia 3', aux - burndown.quantidade_queimada_dia3])
          } else {
             this.data.push(['Dia 3', null])
          }
 
          if (burndown.quantidade_queimada_dia4 != null) {
-            aux = aux - burndown.quantidade_queimada_dia1
+            aux = aux - burndown.quantidade_queimada_dia3
             this.data.push(['Dia 4', aux - burndown.quantidade_queimada_dia4])
          } else {
             this.data.push(['Dia 4', null])
          }
 
          if (burndown.quantidade_queimada_dia5 != null) {
-            aux = aux - burndown.quantidade_queimada_dia1
+            aux = aux - burndown.quantidade_queimada_dia4
             this.data.push(['Dia 5', aux - burndown.quantidade_queimada_dia5])
          } else {
             this.data.push(['Dia 5', null])
