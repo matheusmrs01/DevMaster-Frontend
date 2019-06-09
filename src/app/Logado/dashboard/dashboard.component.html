@@ -115,9 +115,11 @@
         <div class="card-block">
           <ol class="list">
             <div *ngFor="let xp of users_xp">
-              <li>
-                {{xp.user.first_name}} {{xp.user.last_name}} - {{xp.xp_total}}
-              </li>
+              <ng-container *ngIf="xp.tipo == 'J'">
+                <li>
+                  {{xp.user.first_name}} {{xp.user.last_name}} - {{xp.xp_total}}
+                </li>
+              </ng-container>
             </div>
           </ol>
         </div>
@@ -136,9 +138,11 @@
         <div class="card-block">
           <ol class="list">
             <div *ngFor="let xp of users_m">
-              <li>
-                {{xp.user.first_name}} {{xp.user.last_name}} - {{xp.m_realizadas}}
-              </li>
+              <ng-container *ngIf="xp.tipo == 'J'">
+                <li>
+                  {{xp.user.first_name}} {{xp.user.last_name}} - {{xp.m_realizadas}}
+                </li>
+              </ng-container>
             </div>
           </ol>
         </div>
@@ -161,9 +165,11 @@
         <div class="card-block">
           <ol class="list">
             <div *ngFor="let xp of users_d">
-              <li>
-                {{xp.user.first_name}} {{xp.user.last_name}} - {{xp.desafios_v}}
-              </li>
+              <ng-container *ngIf="xp.tipo == 'J'">
+                <li>
+                  {{xp.user.first_name}} {{xp.user.last_name}} - {{xp.desafios_v}}
+                </li>
+              </ng-container>
             </div>
           </ol>
         </div>
@@ -182,9 +188,11 @@
         <div class="card-block">
           <ol class="list">
             <div *ngFor="let xp of users_e">
-              <li>
-                {{xp.user.first_name}} {{xp.user.last_name}} - {{xp.eventos_v}}
-              </li>
+              <ng-container *ngIf="xp.tipo == 'J'">
+                <li>
+                  {{xp.user.first_name}} {{xp.user.last_name}} - {{xp.eventos_v}}
+                </li>
+              </ng-container>
             </div>
           </ol>
         </div>
