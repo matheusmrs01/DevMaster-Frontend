@@ -274,7 +274,7 @@
                           <tr>
                             <td>{{desafio.nome}}</td>
                             <td>{{desafio.desafiante.user.first_name}} {{desafio.desafiante.user.last_name}}</td>
-                            <td>{{desafio.item_desafiante.item.name}}</td>
+                            <td>{{desafio?.item_desafiante?.item.name}}</td>
                             <td>
                               <button class="btn btn-success"
                                 (click)="editar_item = true; desafioFinded=desafio.id">Aceitar</button>
@@ -352,7 +352,7 @@
                           <tr>
                             <td>{{desafio.nome}}</td>
                             <td>{{desafio.desafiante.user.first_name}} {{desafio.desafiante.user.last_name}}</td>
-                            <td>{{desafio.item_desafiante.item.name}}</td>
+                            <td>{{desafio?.item_desafiante?.item.name}}</td>
                             <td>
                               <button class="btn btn-info"
                                 (click)="missoes = true; getMissoesDesafio(desafio.id)">Missões</button>
@@ -392,7 +392,7 @@
                           <tr>
                             <td>{{desafio.nome}}</td>
                             <td>{{desafio.desafiado.user.first_name}} {{desafio.desafiado.user.last_name}}</td>
-                            <td>{{desafio.item_desafiado.item.name}}</td>
+                            <td>{{desafio?.item_desafiado?.item.name}}</td>
                             <td>
                               <button class="btn btn-info"
                                 (click)="missoes = true; getMissoesDesafio(desafio.id)">Missões</button>
@@ -480,7 +480,7 @@
                           <tr>
                             <td>{{desafio.nome}}</td>
                             <td>{{desafio.desafiado.user.first_name}} {{desafio.desafiado.user.last_name}}</td>
-                            <td>{{desafio.item_desafiado.item.name}}</td>
+                            <td>{{desafio?.item_desafiado?.item.name}}</td>
                             <td>
                               <button class="btn btn-info"
                                 (click)="missoesE = true; getMissoesDesafio(desafio.id)">Missões</button>
