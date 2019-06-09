@@ -10,6 +10,7 @@ import { GitlabService } from '../../gitlab.service';
   styleUrls: ['./criar-jogador.component.css']
 })
 export class CriarJogadorComponent implements OnInit {
+  usuario = null;
 
   username;
   senha;
@@ -27,6 +28,8 @@ export class CriarJogadorComponent implements OnInit {
   ) { }
 
   ngOnInit() {
+    this.atualizar();
+    this.navegacao();
   }
 
   cadastrar() {
@@ -36,7 +39,7 @@ export class CriarJogadorComponent implements OnInit {
           usuario => {
             this.limpar();
             this.cadastro_ok = true;
-            this.router.navigate(['login']);
+            this.router.navigate(['']);
           },
           erro => {
             this.cadastro_erro = true;
@@ -44,6 +47,17 @@ export class CriarJogadorComponent implements OnInit {
           }
         );
     });
+  }
+
+  navegacao(){
+    if (this.usuario){
+      this.router.navigate(['dashboard']);
+    }
+  }
+
+  atualizar(){
+    let userL = 'Usuario Logado';
+    this.usuario = JSON.parse(localStorage.getItem(userL));
   }
 
   limpar() {
