@@ -152,7 +152,6 @@ export class DevmasterService {
   }
 
   criarDesafio(name, desafiado, is_item, item=null){
-    console.log(item)
     let desafio
     if(is_item){
       desafio = {
@@ -173,8 +172,14 @@ export class DevmasterService {
     });
   }
 
-  updateItem(id, item){
-    const body = {"id": id, "item": item}
+  updateItem(id, item=null){
+    let body
+    if(item){
+      body = {"id": id, "item": item}
+    }
+    else{
+      body = {"id": id, "item": false}
+    }
     return this.http.put<any[]>(this.API_URL + '/desafio/trocarItemDesafio', body, {
       headers: new HttpHeaders().set('authorization', 'Token ' + JSON.parse(localStorage.getItem('Usuario Logado')).token)
     });
@@ -202,6 +207,12 @@ export class DevmasterService {
 
   removeMissaoDesafio(id){
     return this.http.delete<any[]>(this.API_URL + '/missaodesafio/deleteMissoesDesafio/' + id, {
+      headers: new HttpHeaders().set('authorization', 'Token ' + JSON.parse(localStorage.getItem('Usuario Logado')).token)
+    });
+  }
+  
+  deletarDesafio(id){
+    return this.http.delete<any[]>(this.API_URL + '/desafio/deletarDesafio/' + id, {
       headers: new HttpHeaders().set('authorization', 'Token ' + JSON.parse(localStorage.getItem('Usuario Logado')).token)
     });
   }
