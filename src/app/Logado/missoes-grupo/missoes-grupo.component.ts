@@ -9,7 +9,7 @@ import { GitlabService } from '../../gitlab.service';
   styleUrls: ['./missoes-grupo.component.css']
 })
 export class MissoesGrupoComponent implements OnInit {
-
+  usuario = null;
   id_grupo = null
   grupo = null 
   missoes = null
@@ -23,6 +23,9 @@ export class MissoesGrupoComponent implements OnInit {
   ) { }
 
   ngOnInit() {
+    this.atualizar();
+    this.navegacao();
+
     this.id_grupo = parseInt(this.routeAc.snapshot.paramMap.get('id'));
 
     this.devMasterService.getJogador(JSON.parse(localStorage.getItem('Usuario Logado')).id, JSON.parse(localStorage.getItem('Usuario Logado')).token).subscribe(
@@ -52,6 +55,17 @@ export class MissoesGrupoComponent implements OnInit {
       }
     )
 
+  }
+
+  navegacao(){
+    if (!this.usuario){
+      this.router.navigate(['']);
+    }
+  }
+
+  atualizar(){
+    let userL = 'Usuario Logado';
+    this.usuario = JSON.parse(localStorage.getItem(userL));
   }
 
 }

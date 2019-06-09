@@ -9,7 +9,7 @@ import { DevmasterService } from '../../devmaster.service';
   styleUrls: ['./projeto.component.css']
 })
 export class ProjetoComponent implements OnInit {
-
+  usuario = null;
   projetos: any = null;
   tipo: any = null;
   grupos: any = null;
@@ -17,10 +17,14 @@ export class ProjetoComponent implements OnInit {
   constructor(
     private gitlabService: GitlabService, 
     private routeAc: ActivatedRoute, 
-    private devMasterService: DevmasterService
+    private devMasterService: DevmasterService, 
+    private router: Router
     ) { }
 
   ngOnInit() {
+    this.atualizar();
+    this.navegacao();
+
     this.tipo = parseInt(this.routeAc.snapshot.paramMap.get('id'));
     if (this.tipo == 1) {
       this.gitlabService.getProjetos(JSON.parse(localStorage.getItem('Usuario Logado')).gitlab_token).subscribe(Projetos => {
@@ -38,6 +42,17 @@ export class ProjetoComponent implements OnInit {
         }
       )
     }
+  }
+
+  navegacao(){
+    if (!this.usuario){
+      this.router.navigate(['']);
+    }
+  }
+
+  atualizar(){
+    let userL = 'Usuario Logado';
+    this.usuario = JSON.parse(localStorage.getItem(userL));
   }
 
 }

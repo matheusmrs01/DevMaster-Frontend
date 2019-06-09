@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { DevmasterService } from '../../devmaster.service';
+import { Router } from "@angular/router";
 
 @Component({
    selector: 'app-burndown',
@@ -7,6 +8,7 @@ import { DevmasterService } from '../../devmaster.service';
    styleUrls: ['./burndown.component.css']
 })
 export class BurndownComponent implements OnInit {
+   usuario = null;
    burndowns = null
    type = 'LineChart';
    data = [];
@@ -23,9 +25,11 @@ export class BurndownComponent implements OnInit {
    width = 1000;
    height = 400;
 
-   constructor(private devMasterService: DevmasterService) { }
+   constructor(private devMasterService: DevmasterService, private router: Router) { }
 
    ngOnInit() {
+      this.atualizar();
+      this.navegacao();
       this.devMasterService.getBurndowns().subscribe(
          Burndowns => {
             this.burndowns = Burndowns['List'];
@@ -35,7 +39,16 @@ export class BurndownComponent implements OnInit {
          }
       );
    }
+   navegacao() {
+      if (!this.usuario) {
+         this.router.navigate(['']);
+      }
+   }
 
+   atualizar() {
+      let userL = 'Usuario Logado';
+      this.usuario = JSON.parse(localStorage.getItem(userL));
+   }
    getQuantidade(burndown) {
       if (burndown.quantidade_queimada_dia0 != null) {
          return burndown.quantidade_queimada_dia0 + burndown.quantidade_queimada_dia1 + burndown.quantidade_queimada_dia2 + burndown.quantidade_queimada_dia3 + burndown.quantidade_queimada_dia4 + burndown.quantidade_queimada_dia5

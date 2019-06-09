@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { DevmasterService } from '../../devmaster.service';
+import { Router } from "@angular/router";
 
 @Component({
   selector: 'app-desafio',
@@ -7,6 +8,8 @@ import { DevmasterService } from '../../devmaster.service';
   styleUrls: ['./desafio.component.css']
 })
 export class DesafioComponent implements OnInit {
+
+  usuario = null;
 
   jogadores = null;
   itens_jogador = null;
@@ -26,9 +29,12 @@ export class DesafioComponent implements OnInit {
   desafio_item;
   criarDesafio_message;
 
-  constructor(private devMasterService: DevmasterService) { }
+  constructor(private devMasterService: DevmasterService, private router: Router) { }
 
   ngOnInit() {
+    this.atualizar();
+    this.navegacao();
+
     this.getDesafios();
 
     this.devMasterService.getJogadores().subscribe(Jogadores => {
@@ -52,6 +58,17 @@ export class DesafioComponent implements OnInit {
       Error => {
         this.itens_jogador = 'Error no getItens'
       });
+  }
+
+  navegacao(){
+    if (!this.usuario){
+      this.router.navigate(['']);
+    }
+  }
+
+  atualizar(){
+    let userL = 'Usuario Logado';
+    this.usuario = JSON.parse(localStorage.getItem(userL));
   }
 
   getDesafios() {

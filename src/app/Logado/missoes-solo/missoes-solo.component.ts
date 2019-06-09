@@ -9,7 +9,6 @@ import { GitlabService } from '../../gitlab.service';
   styleUrls: ['./missoes-solo.component.css']
 })
 export class MissoesSoloComponent implements OnInit {
-
   user: any = null;
   projeto_id: any = null;
   issues: any = [];
@@ -30,6 +29,9 @@ export class MissoesSoloComponent implements OnInit {
   ) { }
 
   ngOnInit() {
+    this.atualizar();
+    this.navegacao();
+    
     this.projeto_id = parseInt(this.routeAc.snapshot.paramMap.get('id'));
     
     this.gitlabService.getProject(this.projeto_id).subscribe( Projeto => {
@@ -46,6 +48,17 @@ export class MissoesSoloComponent implements OnInit {
         this.jogador_id = Jogador.id;
       });
     });
+  }
+
+  navegacao(){
+    if (!this.usuario){
+      this.router.navigate(['']);
+    }
+  }
+
+  atualizar(){
+    let userL = 'Usuario Logado';
+    this.usuario = JSON.parse(localStorage.getItem(userL));
   }
 
 }

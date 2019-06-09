@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { DevmasterService } from '../../devmaster.service';
+import { Router } from "@angular/router";
 
 @Component({
   selector: 'app-dashboard',
@@ -8,6 +9,7 @@ import { DevmasterService } from '../../devmaster.service';
 })
 export class DashboardComponent implements OnInit {
 
+  usuario = null;
   jogador = null;
   jogador_itens = null;
 
@@ -24,10 +26,12 @@ export class DashboardComponent implements OnInit {
   niveis = [30, 60, 120, 240, 480, 960, 1920, 3840, 7680, 15360];
 
   constructor(
-    private devMasterService: DevmasterService
+    private devMasterService: DevmasterService, private router: Router
   ) { }
 
   ngOnInit() {
+    this.atualizar();
+    this.navegacao();
 
     this.devMasterService.getJogadores().subscribe(Jogadores => {
       this.users_xp = this.getUsersPorXP(Jogadores);
@@ -62,6 +66,18 @@ export class DashboardComponent implements OnInit {
         this.jogador_itens = 'Error no GetItens'
       }
     );
+  }
+
+
+  navegacao() {
+    if (!this.usuario) {
+      this.router.navigate(['']);
+    }
+  }
+
+  atualizar() {
+    let userL = 'Usuario Logado';
+    this.usuario = JSON.parse(localStorage.getItem(userL));
   }
 
   getUsersPorXP(jogadores) {

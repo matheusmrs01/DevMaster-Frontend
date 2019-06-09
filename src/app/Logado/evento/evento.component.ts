@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { DevmasterService } from '../../devmaster.service';
+import { Router } from "@angular/router";
 
 @Component({
   selector: 'app-evento',
@@ -8,16 +9,30 @@ import { DevmasterService } from '../../devmaster.service';
 })
 export class EventoComponent implements OnInit {
 
+  usuario = null;
   eventos = null;
   evento = null;
   premiacao = null;
 
   constructor(
-    private devMasterService: DevmasterService
+    private devMasterService: DevmasterService, private router: Router
   ) { }
 
   ngOnInit() {
+    this.atualizar();
+    this.navegacao();
     this.getEventos();
+  }
+
+  navegacao(){
+    if (!this.usuario){
+      this.router.navigate(['']);
+    }
+  }
+
+  atualizar(){
+    let userL = 'Usuario Logado';
+    this.usuario = JSON.parse(localStorage.getItem(userL));
   }
 
   getEventos() {
