@@ -74,15 +74,22 @@ export class DesafioComponent implements OnInit {
   getDesafios() {
     this.devMasterService.getDesafios().subscribe(Desafio => {
       this.desafios = Desafio['List']
-      console.log('this.desafios:',  this.desafios)
     },
       Error => {
         this.desafios = 'error no getDesafio';
       });
   }
 
+  deletarDesafio(id) {
+    this.devMasterService.deletarDesafio(id).subscribe(Message => {
+      this.getDesafios()
+    }, Error => {
+      this.getDesafios();
+    })
+  }
+
   criarDesafio() {
-    if (this.desafio_item) {
+    if (this.desafio_item > 0) {
       this.desafio_is_item = true
 
       this.devMasterService.criarDesafio(
@@ -117,16 +124,23 @@ export class DesafioComponent implements OnInit {
   }
 
   editarItem(){
-    this.devMasterService.updateItem(this.desafioFinded, this.desafio_item).subscribe(Message => {
-      console.log(Message)
-      this.clear()
-      this.getDesafios()
-    },
-      Error => {
-        this.criarDesafio_message = 'Erro no criarDesafio'
-      });
-    console.log(this.desafioFinded)
-    console.log(this.desafio_item)
+    if(this.desafio_item > 0){
+      this.devMasterService.updateItem(this.desafioFinded, this.desafio_item).subscribe(Message => {
+        this.clear()
+        this.getDesafios()
+      },
+        Error => {
+          this.criarDesafio_message = 'Erro no criarDesafio'
+        });
+    } else{
+      this.devMasterService.updateItem(this.desafioFinded).subscribe(Message => {
+        this.clear()
+        this.getDesafios()
+      },
+        Error => {
+          this.criarDesafio_message = 'Erro no criarDesafio'
+        });
+    }
   }
 
   getMissoesDesafio(id){

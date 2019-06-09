@@ -6,13 +6,14 @@
       <form class="clr-form" #newDesafio="ngForm">
         <div class="clr-form-control">
           <label for="example" class="clr-control-label">Nome do Desafio:</label>
-          <div class="clr-control-container clr-error">
+          <div class="clr-control-container">
             <div class="clr-input-wrapper">
               <input type="text" id="desafio_name" name="desafio_name" [(ngModel)]="desafio_name" class="clr-input">
-              <clr-icon class="clr-validate-icon" shape="exclamation-circle"></clr-icon>
+              <!-- <clr-icon class="clr-validate-icon" shape="exclamation-circle"></clr-icon> -->
             </div>
-            <span class="clr-subtext">Nome já em uso</span>
+            <!-- <span class="clr-subtext">Nome já em uso</span> -->
           </div>
+          <br/>
 
           <label for="select-full" class="clr-control-label">Desafiado:</label>
           <div class="clr-control-container">
@@ -25,10 +26,11 @@
                   </ng-container>
                 </ng-container>
               </select>
-              <clr-icon class="clr-validate-icon" shape="exclamation-circle"></clr-icon>
+              <!-- <clr-icon class="clr-validate-icon" shape="exclamation-circle"></clr-icon> -->
             </div>
-            <span class="clr-subtext">Desafiado não existe.</span>
+            <!-- <span class="clr-subtext">Desafiado não existe.</span> -->
           </div>
+          <br/>
 
           <label for="select-full" class="clr-control-label">Item:</label>
           <div class="clr-control-container">
@@ -39,9 +41,9 @@
                   <option value="{{item.id}}">{{item.item.name}}</option>
                 </ng-container>
               </select>
-              <clr-icon class="clr-validate-icon" shape="exclamation-circle"></clr-icon>
+              <!-- <clr-icon class="clr-validate-icon" shape="exclamation-circle"></clr-icon> -->
             </div>
-            <span class="clr-subtext">Item não existe ou você não tem a quantidade necessaria</span>
+            <!-- <span class="clr-subtext">Item não existe ou você não tem a quantidade necessaria</span> -->
           </div>
 
         </div>
@@ -278,7 +280,7 @@
                             <td>
                               <button class="btn btn-success"
                                 (click)="editar_item = true; desafioFinded=desafio.id">Aceitar</button>
-                              <button class="btn btn-danger">Recusar</button>
+                              <button class="btn btn-danger" (click)="deletarDesafio(desafio.id)">Recusar</button>
                             </td>
                           </tr>
                         </ng-container>
@@ -311,7 +313,7 @@
                             <td>
                               <button class="btn btn-success"
                                 (click)="editar_item = true;desafioFinded=desafio.id">Editar</button>
-                              <button class="btn btn-danger">Excluir</button>
+                              <button class="btn btn-danger" (click)="deletarDesafio(desafio.id)">Excluir</button>
                             </td>
                           </tr>
                         </ng-container>
