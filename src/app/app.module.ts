@@ -27,7 +27,7 @@ import { EventoComponent } from './Logado/evento/evento.component';
 import { BurndownComponent } from './Logado/burndown/burndown.component';
 
 const appRoutes: Routes = [
-  { path: 'login', component: LoginComponent },
+  { path: '', component: LoginComponent },
   { path: 'cadastro', component: CriarJogadorComponent },
   { path: 'dashboard', component: DashboardComponent },
   { path: 'projetos/:id', component: ProjetoComponent },
@@ -36,8 +36,8 @@ const appRoutes: Routes = [
   { path: 'missoes-grupo/:id', component: MissoesGrupoComponent },
   { path: 'desafio', component: DesafioComponent },
   { path: 'evento', component: EventoComponent },
-  { path: 'burndown', component: BurndownComponent },
-  { path: '', component: HomeComponent }
+  { path: 'burndown', component: BurndownComponent }
+  // { path: '', component: HomeComponent }
 ];
 
 @NgModule({
