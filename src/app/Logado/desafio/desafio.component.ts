@@ -33,7 +33,6 @@ export class DesafioComponent implements OnInit {
 
     this.devMasterService.getJogadores().subscribe(Jogadores => {
       this.jogadores = Jogadores
-      console.log('Jogadores:',  this.jogadores)
     },
       Erros => {
         this.jogadores = 'Error no getJogadores'
@@ -42,7 +41,6 @@ export class DesafioComponent implements OnInit {
     this.devMasterService.getJogador(JSON.parse(localStorage.getItem('Usuario Logado')).id, JSON.parse(localStorage.getItem('Usuario Logado')).token)
       .subscribe(Jogador => {
         this.jogador_logado = Jogador.id
-        console.log(this.jogador_logado)
       },
       Error => {
         this.jogador_logado = 'Error no getJogador'
@@ -50,7 +48,6 @@ export class DesafioComponent implements OnInit {
 
     this.devMasterService.getJogadorItens(JSON.parse(localStorage.getItem('Usuario Logado')).token).subscribe(Itens => {
       this.itens_jogador = Itens['List']
-      console.log('itens_jogador:',  this.itens_jogador)
     },
       Error => {
         this.itens_jogador = 'Error no getItens'
@@ -69,7 +66,6 @@ export class DesafioComponent implements OnInit {
 
   criarDesafio() {
     if (this.desafio_item) {
-      console.log('Criar Desafio com item.')
       this.desafio_is_item = true
 
       this.devMasterService.criarDesafio(
@@ -81,7 +77,6 @@ export class DesafioComponent implements OnInit {
         this.criarDesafio_message = Message;
         this.clear()
         this.getDesafios()
-        console.log(Message)
       },
         Error => {
           this.criarDesafio_message = 'Erro no criarDesafio'
@@ -120,7 +115,6 @@ export class DesafioComponent implements OnInit {
   getMissoesDesafio(id){
     this.devMasterService.getMissoesDesafio(id).subscribe( Missoes => {
       this.missoes_desafio = Missoes['List']
-      console.log(this.missoes_desafio)
     },
     Error => {
       this.missoes_desafio = 'Erro no getMissoesDesafio'
@@ -129,28 +123,23 @@ export class DesafioComponent implements OnInit {
 
   addMissaoDesafio(){
     this.devMasterService.addMissoesDesafio(this.desafioFinded, this.missaoAdd).subscribe(MissaoDesafio => {
-      console.log(MissaoDesafio)
     })
   }
 
   getMissoes(){
     this.devMasterService.getMissoes().subscribe( Missoes => {
-      console.log(this.missoesfinded)
-      console.log(Missoes)
       this.missoesfinded = Missoes
     })
   }
 
   removeMissao(id){
     this.devMasterService.removeMissaoDesafio(id).subscribe(Message => {
-      console.log(Message)
       this.getMissoesDesafio(this.desafioFinded)
     })
   }
 
   mudarStatusDesafio(status){
     this.devMasterService.mudarStatusDesafio(this.desafioFinded, status).subscribe(Message => {
-      console.log(Message)
       this.getDesafios()
     })
   }
