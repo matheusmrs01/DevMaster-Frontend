@@ -19,13 +19,12 @@
                 <clr-icon shape="caret down"></clr-icon>
             </button>
             <clr-dropdown-menu *clrIfOpen clrPosition="bottom-right">
-                <a href="..." clrDropdownItem>Preferences</a>
                 <a routerLink="" (click)="logout()" clrDropdownItem>Logout</a>
             </clr-dropdown-menu>
         </clr-dropdown>
     </div>
 
     <div *ngIf="!usuario" class="header-actions">
-        <a routerLink="login" class="nav-link nav-text">Login</a>
+        <a routerLink="" class="nav-link nav-text">Login</a>
     </div>
 </header>
