@@ -7,7 +7,8 @@ import { Observable } from 'rxjs'
 })
 export class DevmasterService {
 
-  API_URL = 'http://127.0.0.1:8000';
+  // API_URL = 'http://127.0.0.1:8000';
+  API_URL = 'https://api-devmaster.herokuapp.com';
   headers = new HttpHeaders({ 'Content-Type': 'application/json' });
   public user = null;
 
