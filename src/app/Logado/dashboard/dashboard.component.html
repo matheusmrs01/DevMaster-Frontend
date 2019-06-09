@@ -10,7 +10,7 @@
           <div class="clr-row">
             <div class="clr-col-6">
               <div class="card-media-block">
-                <img src="{{jogador.url_imagem}}" class="card-media-image" style="width: 180%; height: 125px;">
+                <img src="{{jogador?.url_imagem}}" class="card-media-image" style="width: 180%; height: 125px;">
               </div>
             </div>
 
@@ -19,37 +19,37 @@
 
                 <div class="clr-row">
                   <span class="card-media-title">
-                    Nome: {{jogador.user.first_name}} {{jogador.user.last_name}}
+                    Nome: {{jogador?.user?.first_name}} {{jogador?.user?.last_name}}
                   </span>
                 </div>
 
                 <div class="clr-row">
                   <span class="card-media-title">
-                    Nivel: {{getNivel(jogador.xp_total) + 1}}
+                    Nivel: {{getNivel(jogador?.xp_total) + 1}}
                   </span>
                 </div>
 
                 <div class="clr-row">
                   <span class="card-media-text">
-                    Desafios vencidos: {{jogador.desafios_v}}
+                    Desafios vencidos: {{jogador?.desafios_v}}
                   </span>
                 </div>
 
                 <div class="clr-row">
                   <span class="card-media-text">
-                    Missões Realizadas: {{jogador.m_realizadas}}
+                    Missões Realizadas: {{jogador?.m_realizadas}}
                   </span>
                 </div>
 
                 <div class="clr-row">
                   <span class="card-media-text">
-                    Eventos Ganho: {{jogador.eventos_v}}
+                    Eventos Ganho: {{jogador?.eventos_v}}
                   </span>
                 </div>
 
                 <div class="clr-row">
                   <span class="card-media-text">
-                    XP Total: {{jogador.xp_total}}
+                    XP Total: {{jogador?.xp_total}}
                   </span>
                 </div>
 
@@ -78,18 +78,18 @@
           </a>
         </div>
         <div class="card-block overflow">
-          <div *ngFor="let item of jogador_itens.List" style="padding: 20px;">
+          <div *ngFor="let item of jogador_itens" style="padding: 20px;">
             <div class="card-media-block">
-              <img src="{{item.item.url_image}}" class="card-media-image">
+              <img src="{{item?.item.url_image}}" class="card-media-image">
               <div class="card-media-description">
                 <span class="card-media-title">
-                  Item: {{item.item.name}}
+                  Item: {{item?.item.name}}
                 </span>
                 <span class="card-media-text">
-                  Quantidade: {{item.quantidade}}
+                  Quantidade: {{item?.quantidade}}
                 </span>
                 <span class="card-media-text">
-                  Quantidade Bloqueada: {{item.quantidade_bloqueada}}
+                  Quantidade Bloqueada: {{item?.quantidade_bloqueada}}
                 </span>
               </div>
             </div>

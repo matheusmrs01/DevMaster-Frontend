@@ -59,8 +59,7 @@ export class DashboardComponent implements OnInit {
 
     this.devMasterService.getJogadorItens(JSON.parse(localStorage.getItem('Usuario Logado')).token).subscribe(
       Items => {
-        this.jogador_itens = Items
-        console.log(this.jogador_itens)
+        this.jogador_itens = Items['List']
       },
       erro => {
         this.jogador_itens = 'Error no GetItens'
@@ -92,7 +91,6 @@ export class DashboardComponent implements OnInit {
         }
       }
     }
-    console.log(usuarios)
     return usuarios;
   }
 
