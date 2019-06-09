@@ -14,7 +14,7 @@
           <clr-tab-content id="content1" *clrIfActive="true">
 
             <div *ngFor="let m of missoes">
-              <div *ngIf="m.status == true && m.jogador == jogador_id && projeto_id == m.id_projeto && m.id_milestone">
+              <div *ngIf="m?.status == true && m?.jogador?.id == jogador_id && projeto_id == m?.id_projeto">
 
                 <div class="card">
                   <div class="card-block">
@@ -55,7 +55,7 @@
           <button clrTabLink>Em Andamento</button>
           <clr-tab-content *clrIfActive>
             <div *ngFor="let m of missoes">
-              <div *ngIf="m.status == false && m.jogador == jogador_id && projeto_id == m.id_projeto && m.id_milestone">
+              <div *ngIf="m?.status == false && m?.jogador?.id == jogador_id && projeto_id == m?.id_projeto">
 
                 <div class="card">
                   <div class="card-block">
