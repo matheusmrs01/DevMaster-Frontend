@@ -8,6 +8,11 @@ import { Router } from "@angular/router";
   styleUrls: ['./desafio.component.css']
 })
 export class DesafioComponent implements OnInit {
+  basic
+  missoesE
+  editar_item
+  addMissao
+  missoes 
 
   usuario = null;
 

@@ -9,6 +9,9 @@ import { Router } from "@angular/router";
 })
 export class EventoComponent implements OnInit {
 
+  premios
+  premiados
+
   usuario = null;
   eventos = null;
   evento = null;

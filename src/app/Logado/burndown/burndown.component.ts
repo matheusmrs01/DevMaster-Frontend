@@ -8,6 +8,11 @@ import { Router } from "@angular/router";
    styleUrls: ['./burndown.component.css']
 })
 export class BurndownComponent implements OnInit {
+
+   burndown_chart
+   columnNames
+   title
+
    usuario = null;
    burndowns = null
    type = 'LineChart';
